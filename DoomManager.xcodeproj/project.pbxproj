@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10CB22BE767B005A605C /* AppDelegate.swift */; };
+		4F5E10CE22BE767B005A605C /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10CD22BE767B005A605C /* Document.swift */; };
+		4F5E10D122BE767B005A605C /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10CF22BE767B005A605C /* Document.xib */; };
+		4F5E10D322BE767E005A605C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D222BE767E005A605C /* Assets.xcassets */; };
+		4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D422BE767E005A605C /* MainMenu.xib */; };
+		4F5E10E222BE767E005A605C /* DoomManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10E122BE767E005A605C /* DoomManagerTests.swift */; };
+		4F5E10ED22BE767E005A605C /* DoomManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10EC22BE767E005A605C /* DoomManagerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F5E10DE22BE767E005A605C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F5E10C022BE767B005A605C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F5E10C722BE767B005A605C;
+			remoteInfo = DoomManager;
+		};
+		4F5E10E922BE767E005A605C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F5E10C022BE767B005A605C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F5E10C722BE767B005A605C;
+			remoteInfo = DoomManager;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4F5E10C822BE767B005A605C /* DoomManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoomManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5E10CB22BE767B005A605C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4F5E10CD22BE767B005A605C /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		4F5E10D022BE767B005A605C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		4F5E10D222BE767E005A605C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F5E10D522BE767E005A605C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		4F5E10D722BE767E005A605C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F5E10D822BE767E005A605C /* DoomManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoomManager.entitlements; sourceTree = "<group>"; };
+		4F5E10DD22BE767E005A605C /* DoomManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoomManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5E10E122BE767E005A605C /* DoomManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomManagerTests.swift; sourceTree = "<group>"; };
+		4F5E10E322BE767E005A605C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F5E10E822BE767E005A605C /* DoomManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoomManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5E10EC22BE767E005A605C /* DoomManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomManagerUITests.swift; sourceTree = "<group>"; };
+		4F5E10EE22BE767E005A605C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F5E10C522BE767B005A605C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5E10DA22BE767E005A605C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5E10E522BE767E005A605C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F5E10BF22BE767B005A605C = {
+			isa = PBXGroup;
+			children = (
+				4F5E10CA22BE767B005A605C /* DoomManager */,
+				4F5E10E022BE767E005A605C /* DoomManagerTests */,
+				4F5E10EB22BE767E005A605C /* DoomManagerUITests */,
+				4F5E10C922BE767B005A605C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F5E10C922BE767B005A605C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F5E10C822BE767B005A605C /* DoomManager.app */,
+				4F5E10DD22BE767E005A605C /* DoomManagerTests.xctest */,
+				4F5E10E822BE767E005A605C /* DoomManagerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F5E10CA22BE767B005A605C /* DoomManager */ = {
+			isa = PBXGroup;
+			children = (
+				4F5E10CB22BE767B005A605C /* AppDelegate.swift */,
+				4F5E10CD22BE767B005A605C /* Document.swift */,
+				4F5E10CF22BE767B005A605C /* Document.xib */,
+				4F5E10D222BE767E005A605C /* Assets.xcassets */,
+				4F5E10D422BE767E005A605C /* MainMenu.xib */,
+				4F5E10D722BE767E005A605C /* Info.plist */,
+				4F5E10D822BE767E005A605C /* DoomManager.entitlements */,
+			);
+			path = DoomManager;
+			sourceTree = "<group>";
+		};
+		4F5E10E022BE767E005A605C /* DoomManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F5E10E122BE767E005A605C /* DoomManagerTests.swift */,
+				4F5E10E322BE767E005A605C /* Info.plist */,
+			);
+			path = DoomManagerTests;
+			sourceTree = "<group>";
+		};
+		4F5E10EB22BE767E005A605C /* DoomManagerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4F5E10EC22BE767E005A605C /* DoomManagerUITests.swift */,
+				4F5E10EE22BE767E005A605C /* Info.plist */,
+			);
+			path = DoomManagerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F5E10C722BE767B005A605C /* DoomManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F5E10F122BE767E005A605C /* Build configuration list for PBXNativeTarget "DoomManager" */;
+			buildPhases = (
+				4F5E10C422BE767B005A605C /* Sources */,
+				4F5E10C522BE767B005A605C /* Frameworks */,
+				4F5E10C622BE767B005A605C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DoomManager;
+			productName = DoomManager;
+			productReference = 4F5E10C822BE767B005A605C /* DoomManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4F5E10DC22BE767E005A605C /* DoomManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F5E10F422BE767E005A605C /* Build configuration list for PBXNativeTarget "DoomManagerTests" */;
+			buildPhases = (
+				4F5E10D922BE767E005A605C /* Sources */,
+				4F5E10DA22BE767E005A605C /* Frameworks */,
+				4F5E10DB22BE767E005A605C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F5E10DF22BE767E005A605C /* PBXTargetDependency */,
+			);
+			name = DoomManagerTests;
+			productName = DoomManagerTests;
+			productReference = 4F5E10DD22BE767E005A605C /* DoomManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4F5E10E722BE767E005A605C /* DoomManagerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F5E10F722BE767E005A605C /* Build configuration list for PBXNativeTarget "DoomManagerUITests" */;
+			buildPhases = (
+				4F5E10E422BE767E005A605C /* Sources */,
+				4F5E10E522BE767E005A605C /* Frameworks */,
+				4F5E10E622BE767E005A605C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F5E10EA22BE767E005A605C /* PBXTargetDependency */,
+			);
+			name = DoomManagerUITests;
+			productName = DoomManagerUITests;
+			productReference = 4F5E10E822BE767E005A605C /* DoomManagerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F5E10C022BE767B005A605C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Ioan Chera";
+				TargetAttributes = {
+					4F5E10C722BE767B005A605C = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					4F5E10DC22BE767E005A605C = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 4F5E10C722BE767B005A605C;
+					};
+					4F5E10E722BE767E005A605C = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 4F5E10C722BE767B005A605C;
+					};
+				};
+			};
+			buildConfigurationList = 4F5E10C322BE767B005A605C /* Build configuration list for PBXProject "DoomManager" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F5E10BF22BE767B005A605C;
+			productRefGroup = 4F5E10C922BE767B005A605C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F5E10C722BE767B005A605C /* DoomManager */,
+				4F5E10DC22BE767E005A605C /* DoomManagerTests */,
+				4F5E10E722BE767E005A605C /* DoomManagerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F5E10C622BE767B005A605C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5E10D322BE767E005A605C /* Assets.xcassets in Resources */,
+				4F5E10D122BE767B005A605C /* Document.xib in Resources */,
+				4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5E10DB22BE767E005A605C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5E10E622BE767E005A605C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F5E10C422BE767B005A605C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5E10CE22BE767B005A605C /* Document.swift in Sources */,
+				4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5E10D922BE767E005A605C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5E10E222BE767E005A605C /* DoomManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5E10E422BE767E005A605C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5E10ED22BE767E005A605C /* DoomManagerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F5E10DF22BE767E005A605C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F5E10C722BE767B005A605C /* DoomManager */;
+			targetProxy = 4F5E10DE22BE767E005A605C /* PBXContainerItemProxy */;
+		};
+		4F5E10EA22BE767E005A605C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F5E10C722BE767B005A605C /* DoomManager */;
+			targetProxy = 4F5E10E922BE767E005A605C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4F5E10CF22BE767B005A605C /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F5E10D022BE767B005A605C /* Base */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		4F5E10D422BE767E005A605C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F5E10D522BE767E005A605C /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F5E10EF22BE767E005A605C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4F5E10F022BE767E005A605C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		4F5E10F222BE767E005A605C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DoomManager/DoomManager.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 66L236F264;
+				INFOPLIST_FILE = DoomManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.i-chera.DoomManager";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4F5E10F322BE767E005A605C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DoomManager/DoomManager.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 66L236F264;
+				INFOPLIST_FILE = DoomManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.i-chera.DoomManager";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4F5E10F522BE767E005A605C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 66L236F264;
+				INFOPLIST_FILE = DoomManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.i-chera.DoomManagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoomManager.app/Contents/MacOS/DoomManager";
+			};
+			name = Debug;
+		};
+		4F5E10F622BE767E005A605C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 66L236F264;
+				INFOPLIST_FILE = DoomManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.i-chera.DoomManagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoomManager.app/Contents/MacOS/DoomManager";
+			};
+			name = Release;
+		};
+		4F5E10F822BE767E005A605C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 66L236F264;
+				INFOPLIST_FILE = DoomManagerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.i-chera.DoomManagerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = DoomManager;
+			};
+			name = Debug;
+		};
+		4F5E10F922BE767E005A605C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 66L236F264;
+				INFOPLIST_FILE = DoomManagerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.i-chera.DoomManagerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = DoomManager;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F5E10C322BE767B005A605C /* Build configuration list for PBXProject "DoomManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F5E10EF22BE767E005A605C /* Debug */,
+				4F5E10F022BE767E005A605C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F5E10F122BE767E005A605C /* Build configuration list for PBXNativeTarget "DoomManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F5E10F222BE767E005A605C /* Debug */,
+				4F5E10F322BE767E005A605C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F5E10F422BE767E005A605C /* Build configuration list for PBXNativeTarget "DoomManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F5E10F522BE767E005A605C /* Debug */,
+				4F5E10F622BE767E005A605C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F5E10F722BE767E005A605C /* Build configuration list for PBXNativeTarget "DoomManagerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F5E10F822BE767E005A605C /* Debug */,
+				4F5E10F922BE767E005A605C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F5E10C022BE767B005A605C /* Project object */;
+}
