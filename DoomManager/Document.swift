@@ -8,9 +8,10 @@
 
 import Cocoa
 
-class Document: NSDocument {
+class Document: NSDocument, NSTableViewDataSource {
 
     private let wad = Wad()
+    @IBOutlet var lumpList: NSTableView!
 
     override init() {
         super.init()
@@ -42,5 +43,16 @@ class Document: NSDocument {
         } catch DMError.wadReading(let info) {
             throw NSError(domain: NSOSStatusErrorDomain, code: readErr, userInfo: [NSLocalizedDescriptionKey: info])
         }
+    }
+
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return wad.lumps.count
+    }
+
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        if tableColumn === tableView.tableColumns[0] {
+            return wad.lumps[row].name
+        }
+        return nil
     }
 }
