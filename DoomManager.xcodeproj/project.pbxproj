@@ -14,6 +14,10 @@
 		4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D422BE767E005A605C /* MainMenu.xib */; };
 		4F5E10E222BE767E005A605C /* DoomManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10E122BE767E005A605C /* DoomManagerTests.swift */; };
 		4F5E10ED22BE767E005A605C /* DoomManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10EC22BE767E005A605C /* DoomManagerUITests.swift */; };
+		4F94E72322BF6AAD008DB033 /* Lump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72122BF6AAD008DB033 /* Lump.swift */; };
+		4F94E72422BF6AAD008DB033 /* Wad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72222BF6AAD008DB033 /* Wad.swift */; };
+		4F94E72622BF6AFA008DB033 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72522BF6AFA008DB033 /* DataExtension.swift */; };
+		4F94E72822BF6B28008DB033 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72722BF6B28008DB033 /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		4F5E10E822BE767E005A605C /* DoomManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoomManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E10EC22BE767E005A605C /* DoomManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomManagerUITests.swift; sourceTree = "<group>"; };
 		4F5E10EE22BE767E005A605C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F94E72122BF6AAD008DB033 /* Lump.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lump.swift; sourceTree = "<group>"; };
+		4F94E72222BF6AAD008DB033 /* Wad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wad.swift; sourceTree = "<group>"; };
+		4F94E72522BF6AFA008DB033 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		4F94E72722BF6B28008DB033 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +107,16 @@
 			isa = PBXGroup;
 			children = (
 				4F5E10CB22BE767B005A605C /* AppDelegate.swift */,
+				4F94E72522BF6AFA008DB033 /* DataExtension.swift */,
 				4F5E10CD22BE767B005A605C /* Document.swift */,
 				4F5E10CF22BE767B005A605C /* Document.xib */,
 				4F5E10D222BE767E005A605C /* Assets.xcassets */,
+				4F94E72722BF6B28008DB033 /* Errors.swift */,
+				4F94E72122BF6AAD008DB033 /* Lump.swift */,
 				4F5E10D422BE767E005A605C /* MainMenu.xib */,
 				4F5E10D722BE767E005A605C /* Info.plist */,
 				4F5E10D822BE767E005A605C /* DoomManager.entitlements */,
+				4F94E72222BF6AAD008DB033 /* Wad.swift */,
 			);
 			path = DoomManager;
 			sourceTree = "<group>";
@@ -258,8 +270,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F94E72422BF6AAD008DB033 /* Wad.swift in Sources */,
 				4F5E10CE22BE767B005A605C /* Document.swift in Sources */,
+				4F94E72322BF6AAD008DB033 /* Lump.swift in Sources */,
 				4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */,
+				4F94E72822BF6B28008DB033 /* Errors.swift in Sources */,
+				4F94E72622BF6AFA008DB033 /* DataExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
