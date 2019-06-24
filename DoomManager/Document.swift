@@ -8,10 +8,11 @@
 
 import Cocoa
 
-class Document: NSDocument, NSTableViewDataSource {
+class Document: NSDocument {
 
-    private let wad = Wad()
+    let wad = Wad()
     @IBOutlet var lumpList: NSTableView!
+    @IBOutlet var lumpViewDelegate: LumpViewDelegate!
 
     override init() {
         super.init()
@@ -20,6 +21,10 @@ class Document: NSDocument, NSTableViewDataSource {
 
     override class var autosavesInPlace: Bool {
         return true
+    }
+
+    override func awakeFromNib() {
+        lumpViewDelegate.document = self
     }
 
     override var windowNibName: NSNib.Name? {
@@ -31,7 +36,7 @@ class Document: NSDocument, NSTableViewDataSource {
     override func data(ofType typeName: String) throws -> Data {
         // Insert code here to write your document to data of the specified type, throwing an error in case of failure.
         // Alternatively, you could remove this method and override fileWrapper(ofType:), write(to:ofType:), or write(to:ofType:for:originalContentsURL:) instead.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        return wad.serialized()
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
@@ -45,14 +50,5 @@ class Document: NSDocument, NSTableViewDataSource {
         }
     }
 
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return wad.lumps.count
-    }
-
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if tableColumn === tableView.tableColumns[0] {
-            return wad.lumps[row].name
-        }
-        return nil
-    }
+    
 }

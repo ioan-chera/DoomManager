@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="DoomManager" customModuleProvider="target">
             <connections>
                 <outlet property="lumpList" destination="X4p-Ap-n52" id="4yO-yx-c7G"/>
+                <outlet property="lumpViewDelegate" destination="Myc-yH-RWi" id="uMD-TA-Kav"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -45,7 +46,7 @@
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="lump" width="195" minWidth="40" maxWidth="1000" id="pRj-oJ-WbO">
+                                                        <tableColumn identifier="lump" width="102.5" minWidth="40" maxWidth="1000" id="pRj-oJ-WbO">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Lump">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -58,18 +59,31 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
+                                                        <tableColumn width="89" minWidth="10" maxWidth="3.4028234663852886e+38" id="mkG-kd-cDZ">
+                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Type">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </tableHeaderCell>
+                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="uzG-OB-B4k">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                        </tableColumn>
                                                     </tableColumns>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="-2" id="fBb-Ms-LNp"/>
+                                                        <outlet property="dataSource" destination="Myc-yH-RWi" id="2Dp-g5-Bgk"/>
                                                     </connections>
                                                 </tableView>
                                             </subviews>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="L4W-0Z-mMG">
-                                            <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="L4W-0Z-mMG">
+                                            <rect key="frame" x="1" y="396" width="198" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9q2-bD-6zW">
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="9q2-bD-6zW">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -97,5 +111,6 @@
             </connections>
             <point key="canvasLocation" x="139.5" y="146.5"/>
         </window>
+        <customObject id="Myc-yH-RWi" customClass="LumpViewDelegate" customModule="DoomManager" customModuleProvider="target"/>
     </objects>
 </document>
