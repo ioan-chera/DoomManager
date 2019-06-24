@@ -34,4 +34,16 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource {
         }
         return nil
     }
+
+    ///
+    /// Renaming support
+    ///
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        guard let document = document else {
+            return
+        }
+        if tableColumn === tableView.tableColumns[columnIndexLumpName] {
+            document.operations.rename(lump: document.wad.lumps[row], as: object as! String)
+        }
+    }
 }

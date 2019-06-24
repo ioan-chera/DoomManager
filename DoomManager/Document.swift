@@ -8,15 +8,20 @@
 
 import Cocoa
 
-class Document: NSDocument {
+class Document: NSDocument, WadOperationsDelegate {
 
     let wad = Wad()
     @IBOutlet var lumpList: NSTableView!
     @IBOutlet var lumpViewDelegate: LumpViewDelegate!
 
+    let operations: WadOperations
+
     override init() {
+        operations = WadOperations(wad: wad)
         super.init()
         // Add your subclass-specific initialization here.
+        operations.undo = undoManager
+        operations.delegate = self
     }
 
     override class var autosavesInPlace: Bool {
@@ -50,5 +55,7 @@ class Document: NSDocument {
         }
     }
 
-    
+    func wadOperationsOccurred() {
+        lumpList.reloadData()
+    }
 }

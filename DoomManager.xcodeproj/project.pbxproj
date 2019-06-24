@@ -23,6 +23,7 @@
 		4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72D22BF888A008DB033 /* DoomGraphics.swift */; };
 		4F94E73022C15935008DB033 /* UndoManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72F22C15935008DB033 /* UndoManagerExtension.swift */; };
 		4F94E73222C159AE008DB033 /* LumpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E73122C159AE008DB033 /* LumpViewDelegate.swift */; };
+		4FCD838B22C1602C004753DA /* WadOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD838A22C1602C004753DA /* WadOperations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		4F94E72D22BF888A008DB033 /* DoomGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomGraphics.swift; sourceTree = "<group>"; };
 		4F94E72F22C15935008DB033 /* UndoManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoManagerExtension.swift; sourceTree = "<group>"; };
 		4F94E73122C159AE008DB033 /* LumpViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumpViewDelegate.swift; sourceTree = "<group>"; };
+		4FCD838A22C1602C004753DA /* WadOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WadOperations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				4F5E10D822BE767E005A605C /* DoomManager.entitlements */,
 				4F94E72F22C15935008DB033 /* UndoManagerExtension.swift */,
 				4F94E72222BF6AAD008DB033 /* Wad.swift */,
+				4FCD838A22C1602C004753DA /* WadOperations.swift */,
 			);
 			path = DoomManager;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			files = (
 				4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */,
 				4F94E73022C15935008DB033 /* UndoManagerExtension.swift in Sources */,
+				4FCD838B22C1602C004753DA /* WadOperations.swift in Sources */,
 				4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */,
 				4F94E72422BF6AAD008DB033 /* Wad.swift in Sources */,
 				4F5E10CE22BE767B005A605C /* Document.swift in Sources */,
