@@ -23,7 +23,7 @@ import Foundation
 ///
 class Lump
 {
-    fileprivate var _nameBytes: [UInt8]  // byte array up to 8 values
+    private var _nameBytes: [UInt8]  // byte array up to 8 values
     var data: [UInt8]
 
     var nameBytes: [UInt8] {
@@ -47,7 +47,7 @@ class Lump
                     string = String(string[..<string.index(before: string.endIndex)])
                 }
             }
-            self.nameBytes = Array(string.utf8)
+            self.nameBytes = Array(string.utf8.prefix(8))
         }
     }
 
