@@ -14,7 +14,16 @@ import Foundation
 ///
 class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
 
-    var wad: Wad?
+    private var wad: Wad?
+    private var wadOperations: WadOperations?
+
+    ///
+    /// Grouped setter
+    ///
+    func set(wad: Wad, operations: WadOperations) {
+        self.wad = wad
+        wadOperations = operations
+    }
 
     ///
     /// Required number of rows
@@ -31,9 +40,26 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
             let lumpName = wad?.lumps[row].name ?? ""
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("lump"), owner: nil) as? NSTableCellView {
                 cell.textField?.stringValue = lumpName
+
+                cell.textField?.tag = row   // Need the lump index
+                // Can't set these from Interface Builder, set them here
+                cell.textField?.target = self
+                cell.textField?.action = #selector(LumpViewDelegate.lumpNameEdited(_:))
+
                 return cell
             }
         }
         return nil
+    }
+
+    ///
+    /// When lump name was edited
+    ///
+    @objc func lumpNameEdited(_ sender: AnyObject?) {
+        if let field = sender as? NSTextField,
+            let wad = wad
+        {
+            wadOperations?.rename(lump: wad.lumps[field.tag], as: field.stringValue)
+        }
     }
 }

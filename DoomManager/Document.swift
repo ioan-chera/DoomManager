@@ -8,9 +8,9 @@
 
 import Cocoa
 
-private let columnIndexLumpName = 0
-private let columnIndexLumpType = 1
-
+///
+/// The document
+///
 class Document: NSDocument, WadOperationsDelegate {
 
     private let wad = Wad()
@@ -28,16 +28,15 @@ class Document: NSDocument, WadOperationsDelegate {
     }
 
     ///
-    /// Setup NIB-connected objects
+    /// Enable autosave and versions
     ///
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Give all data they need
-        lumpListDelegate.wad = wad
-    }
-
     override class var autosavesInPlace: Bool {
         return true
+    }
+
+    override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
+        super.windowControllerDidLoadNib(windowController)
+        lumpListDelegate.set(wad: wad, operations: operations)
     }
 
     override var windowNibName: NSNib.Name? {

@@ -25,7 +25,11 @@ class WadOperations {
 
     func rename(lump: Lump, as name: String) {
         let currentName = lump.name
+        let oldNameBytes = lump.nameBytes
         lump.name = name
+        if oldNameBytes == lump.nameBytes {
+            return
+        }
         undo?.registerUndo(withTarget: self, handler: { _ in
             self.rename(lump: lump, as: currentName)
         })
