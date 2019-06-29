@@ -348,6 +348,12 @@ CA
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Wad" id="HHC-TC-IX1">
                         <items>
+                            <menuItem title="Import Lumps…" id="ovw-Fj-8jc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="importLumpClicked:" target="-1" id="OwC-sG-znv"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Move Lumps Up" keyEquivalent="" id="lJm-cu-0Dd">
                                 <connections>
                                     <action selector="moveLumpUpClicked:" target="-1" id="DjH-hT-apH"/>
@@ -356,12 +362,6 @@ CA
                             <menuItem title="Move Lumps Down" keyEquivalent="" id="fh4-k0-c3m">
                                 <connections>
                                     <action selector="moveLumpDownClicked:" target="-1" id="heI-gD-L8e"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Import Lumps…" id="ovw-Fj-8jc">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="importLumpClicked:" target="-1" id="OwC-sG-znv"/>
                                 </connections>
                             </menuItem>
                         </items>
