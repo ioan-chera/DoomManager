@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1079A222C7CFC300725AB4 /* IndexSetUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1079A122C7CFC300725AB4 /* IndexSetUtil.swift */; };
 		4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10CB22BE767B005A605C /* AppDelegate.swift */; };
 		4F5E10D322BE767E005A605C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D222BE767E005A605C /* Assets.xcassets */; };
 		4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D422BE767E005A605C /* MainMenu.xib */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F1079A122C7CFC300725AB4 /* IndexSetUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexSetUtil.swift; sourceTree = "<group>"; };
 		4F5E10C822BE767B005A605C /* DoomManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoomManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E10CB22BE767B005A605C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F5E10D222BE767E005A605C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				4F5E10D222BE767E005A605C /* Assets.xcassets */,
 				4F94E72D22BF888A008DB033 /* DoomGraphics.swift */,
 				4F94E72722BF6B28008DB033 /* Errors.swift */,
+				4F1079A122C7CFC300725AB4 /* IndexSetUtil.swift */,
 				4F5E10D722BE767E005A605C /* Info.plist */,
 				4F5E10D822BE767E005A605C /* DoomManager.entitlements */,
 			);
@@ -328,6 +331,7 @@
 				4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */,
 				4F94E72822BF6B28008DB033 /* Errors.swift in Sources */,
 				4F94E72622BF6AFA008DB033 /* DataExtension.swift in Sources */,
+				4F1079A222C7CFC300725AB4 /* IndexSetUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
