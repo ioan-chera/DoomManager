@@ -50,8 +50,25 @@ class Wad
         lumps.append(lump)
     }
 
+    ///
+    /// Adds inside the wad a lump
+    ///
+    func add(lump: Lump, index: Int) {
+        lumps.insert(lump, at: index)
+    }
+
+    ///
+    /// Replaces a lump
+    ///
     func replace(lumpAtIndex index: Int, with lump: Lump) {
         lumps[index] = lump
+    }
+
+    ///
+    /// Deletes a lump
+    ///
+    func delete(lumpAtIndex index: Int) -> Lump {
+        return lumps.remove(at: index)
     }
 
     ///

@@ -93,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1079A022C7B78E00725AB4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4F5E10CB22BE767B005A605C /* AppDelegate.swift */,
+				4F5E10D422BE767E005A605C /* MainMenu.xib */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
 		4F5E10BF22BE767B005A605C = {
 			isa = PBXGroup;
 			children = (
@@ -116,15 +125,14 @@
 		4F5E10CA22BE767B005A605C /* DoomManager */ = {
 			isa = PBXGroup;
 			children = (
+				4F1079A022C7B78E00725AB4 /* App */,
 				4F769D9622C76D0300E7E702 /* Document */,
 				4F769D8C22C76CCC00E7E702 /* Wad */,
-				4F5E10CB22BE767B005A605C /* AppDelegate.swift */,
 				4F94E72522BF6AFA008DB033 /* DataExtension.swift */,
 				4F94E72B22BF7E21008DB033 /* DataReader.swift */,
 				4F5E10D222BE767E005A605C /* Assets.xcassets */,
 				4F94E72D22BF888A008DB033 /* DoomGraphics.swift */,
 				4F94E72722BF6B28008DB033 /* Errors.swift */,
-				4F5E10D422BE767E005A605C /* MainMenu.xib */,
 				4F5E10D722BE767E005A605C /* Info.plist */,
 				4F5E10D822BE767E005A605C /* DoomManager.entitlements */,
 			);

@@ -77,4 +77,21 @@ class Document: NSDocument, WadOperationsDelegate {
     func wadOperationsUpdateView() {
         lumpList.reloadData()
     }
+
+    ///
+    /// Validate menus
+    ///
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(Document.delete(_:)) {
+            return !lumpList.selectedRowIndexes.isEmpty
+        }
+        return super.validateMenuItem(menuItem)
+    }
+
+    ///
+    /// Delete responder
+    ///
+    @objc func delete(_ sender: Any?) {
+        operations.deleteLumps(indices: lumpList.selectedRowIndexes)
+    }
 }

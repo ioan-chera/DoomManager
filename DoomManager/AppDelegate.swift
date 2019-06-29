@@ -21,6 +21,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    ///
+    /// Get current document quickly
+    ///
+    var document: Document? {
+        return NSDocumentController.shared.currentDocument as? Document
+    }
 
+    ///
+    /// When "Import lump" is selected
+    ///
+    @IBAction func importLumpClicked(_ sender: AnyObject) {
+
+    }
 }
-

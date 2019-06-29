@@ -39,7 +39,7 @@
                                             <rect key="frame" x="1" y="0.0" width="198" height="411"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="SUX-nW-d7g" viewBased="YES" id="X4p-Ap-n52">
+                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="SUX-nW-d7g" viewBased="YES" id="X4p-Ap-n52">
                                                     <rect key="frame" x="0.0" y="0.0" width="198" height="386"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>

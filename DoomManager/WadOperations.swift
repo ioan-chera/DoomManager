@@ -44,4 +44,35 @@ class WadOperations {
         }
         delegate?.wadOperationsUpdateView()
     }
+
+    ///
+    /// Adds a prepared lump to the wad
+    ///
+    private func add(lump: Lump, index: Int) {
+        wad.add(lump: lump, index: index)
+        delegate?.wadOperationsUndo {
+            self.deleteLump(index: index)
+        }
+        delegate?.wadOperationsUpdateView()
+    }
+
+    ///
+    /// Delete one lump
+    ///
+    private func deleteLump(index: Int) {
+        let lump = wad.delete(lumpAtIndex: index)
+        delegate?.wadOperationsUndo {
+            self.add(lump: lump, index: index)
+        }
+        delegate?.wadOperationsUpdateView()
+    }
+
+    ///
+    /// Delete lumps
+    ///
+    func deleteLumps(indices: IndexSet) {
+        for index in Array(indices) {
+            deleteLump(index: index)
+        }
+    }
 }
