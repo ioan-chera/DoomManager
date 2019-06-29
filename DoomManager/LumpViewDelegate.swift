@@ -56,10 +56,8 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
     /// When lump name was edited
     ///
     @objc func lumpNameEdited(_ sender: AnyObject?) {
-        if let field = sender as? NSTextField,
-            let wad = wad
-        {
-            wadOperations?.rename(lump: wad.lumps[field.tag], as: field.stringValue)
+        if let field = sender as? NSTextField {
+            wadOperations?.renameLump(index: field.tag, as: field.stringValue)
         }
     }
 }

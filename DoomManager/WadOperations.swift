@@ -14,6 +14,10 @@ import Foundation
 protocol WadOperationsDelegate: class {
     func wadOperationsUndo(closure: @escaping () -> Void)
     func wadOperationsUpdateView()
+
+    func wadOperationsBeginMultiHighlight()
+    func wadOperationsHighlight(index: Int)
+    func wadOperationsEndMultiHighlight()
 }
 
 ///
@@ -30,7 +34,8 @@ class WadOperations {
     ///
     /// Lump rename
     ///
-    func rename(lump: Lump, as name: String) {
+    func renameLump(index: Int, as name: String) {
+        let lump = wad.lumps[index]
         let oldName = lump.name
         let oldNameBytes = lump.nameBytes
         lump.name = name
@@ -40,9 +45,10 @@ class WadOperations {
             return
         }
         delegate?.wadOperationsUndo {
-            self.rename(lump: lump, as: oldName)
+            self.renameLump(index: index, as: oldName)
         }
         delegate?.wadOperationsUpdateView()
+        delegate?.wadOperationsHighlight(index: index)
     }
 
     ///
@@ -54,6 +60,7 @@ class WadOperations {
             self.deleteLump(index: index)
         }
         delegate?.wadOperationsUpdateView()
+        delegate?.wadOperationsHighlight(index: index)
     }
 
     ///
@@ -71,9 +78,15 @@ class WadOperations {
     /// Delete lumps
     ///
     func deleteLumps(indices: IndexSet) {
+        if indices.isEmpty {
+            return
+        }
+
+        delegate?.wadOperationsBeginMultiHighlight()
         for index in Array(indices) {
             deleteLump(index: index)
         }
+        delegate?.wadOperationsEndMultiHighlight()
     }
 
     private func moveLump(index: Int, toIndex: Int) {
@@ -86,6 +99,7 @@ class WadOperations {
             self.moveLump(index: toIndex, toIndex: index)
         }
         delegate?.wadOperationsUpdateView()
+        delegate?.wadOperationsHighlight(index: toIndex)
     }
 
     ///
@@ -93,13 +107,18 @@ class WadOperations {
     ///
     func moveLumpsUp(indices: IndexSet) {
         let newIndices = indices.decremented(minimum: 0)
+        if newIndices == indices {
+            return
+        }
         let newIndicesArray = Array(newIndices)
         var pos = 0
 
+        delegate?.wadOperationsBeginMultiHighlight()
         for index in Array(indices) {
             moveLump(index: index, toIndex: newIndicesArray[pos])
             pos += 1
         }
+        delegate?.wadOperationsEndMultiHighlight()
     }
 
     ///
@@ -107,19 +126,31 @@ class WadOperations {
     ///
     func moveLumpsDown(indices: IndexSet) {
         let newIndices = indices.incremented(maximum: wad.lumps.count - 1)
+        if newIndices == indices {
+            return
+        }
         let newIndicesArray = Array(Array(newIndices).reversed())
         var pos = 0
 
+        delegate?.wadOperationsBeginMultiHighlight()
         for index in Array(indices).reversed() {
             moveLump(index: index, toIndex: newIndicesArray[pos])
             pos += 1
         }
+        delegate?.wadOperationsEndMultiHighlight()
     }
 
     ///
     /// Load many lumps from URLs, potentially populating post given indices
     ///
     func importLumps(urls: [URL], afterEachIndex indices: IndexSet) {
+
+        // Try to validate ahead of time
+        let lumps = urls.compactMap { Lump(url: $0) }
+        // All failed? Abort. This is to prevent any ineffectual "dirtyness" states.
+        if lumps.isEmpty {
+            return
+        }
 
         var fullIndices = Array(indices)
         while fullIndices.count < urls.count {
@@ -128,11 +159,13 @@ class WadOperations {
 
         var pos = 0
 
+        delegate?.wadOperationsBeginMultiHighlight()
         for url in urls {
             if let lump = Lump(url: url) {
                 add(lump: lump, index: fullIndices[pos] + 1 + pos)
                 pos += 1
             }
         }
+        delegate?.wadOperationsEndMultiHighlight()
     }
 }

@@ -80,6 +80,50 @@ class Document: NSDocument, WadOperationsDelegate {
     }
 
     ///
+    /// Highlight a cell or add it to the list if during a session
+    ///
+    private var multiHighlightIndices: IndexSet?
+    private var multiHighlightRefs = 0
+    func wadOperationsHighlight(index: Int) {
+        if multiHighlightIndices != nil {
+            multiHighlightIndices?.insert(index)
+        } else {    // otherwise it's just a unit
+            lumpList.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: true)
+        }
+    }
+
+    ///
+    /// Starting a session. NOTE: this must be put into undo because it's called from the operation
+    ///
+    func wadOperationsBeginMultiHighlight() {
+        if multiHighlightRefs == 0 {
+            multiHighlightIndices = IndexSet()
+        }
+        multiHighlightRefs += 1
+
+        undoManager?.registerUndo(withTarget: self) { _ in
+            self.wadOperationsEndMultiHighlight()
+        }
+    }
+
+    ///
+    /// Ending and committing a session
+    ///
+    func wadOperationsEndMultiHighlight() {
+        if let indices = multiHighlightIndices {
+            if multiHighlightRefs == 1 {
+                lumpList.selectRowIndexes(indices, byExtendingSelection: false)
+                multiHighlightIndices = nil
+            }
+        }
+        multiHighlightRefs -= 1
+        assert(multiHighlightRefs >= 0)
+        undoManager?.registerUndo(withTarget: self) { _ in
+            self.wadOperationsBeginMultiHighlight()
+        }
+    }
+
+    ///
     /// Validate menus
     ///
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
@@ -98,20 +142,9 @@ class Document: NSDocument, WadOperationsDelegate {
     }
 
     ///
-    /// Helper method to add current selected rows to undo. Saves boilerplate.
-    ///
-    private func addCurrentSelectionToUndo() {
-        let indexSet = lumpList.selectedRowIndexes
-        undoManager?.registerUndo(withTarget: self) { _ in
-            self.lumpList.selectRowIndexes(indexSet, byExtendingSelection: false)
-        }
-    }
-
-    ///
     /// Delete responder
     ///
     @objc func delete(_ sender: Any?) {
-        addCurrentSelectionToUndo()
         operations.deleteLumps(indices: lumpList.selectedRowIndexes)
     }
 
@@ -119,26 +152,14 @@ class Document: NSDocument, WadOperationsDelegate {
     /// Move up clicked
     ///
     @IBAction func moveLumpUpClicked(_ sender: Any?) {
-        let indexSet = lumpList.selectedRowIndexes
-        let decrementedSet = indexSet.decremented(minimum: 0)
-        if indexSet != decrementedSet {
-            addCurrentSelectionToUndo()
-        }
         operations.moveLumpsUp(indices: lumpList.selectedRowIndexes)
-        lumpList.selectRowIndexes(decrementedSet, byExtendingSelection: false)
     }
 
     ///
     /// Move down clicked
     ///
     @IBAction func moveLumpDownClicked(_ sender: Any?) {
-        let indexSet = lumpList.selectedRowIndexes
-        let incrementedSet = indexSet.incremented(maximum: lumpList.numberOfRows - 1)
-        if indexSet != incrementedSet {
-            addCurrentSelectionToUndo()
-        }
         operations.moveLumpsDown(indices: lumpList.selectedRowIndexes)
-        lumpList.selectRowIndexes(incrementedSet, byExtendingSelection: false)
     }
 
     ///
