@@ -8,31 +8,40 @@
 
 import Foundation
 
+///
+/// Whoever listens to wad operation updates. Usually a document
+///
 protocol WadOperationsDelegate: class {
     func wadOperationsUndo(closure: @escaping () -> Void)
     func wadOperationsUpdateView()
 }
 
+///
+/// User operations on a wad document
+///
 class WadOperations {
     private let wad: Wad
-    var undo: UndoManager?
-
     weak var delegate: WadOperationsDelegate?
 
     init(wad: Wad) {
         self.wad = wad
     }
 
+    ///
+    /// Lump rename
+    ///
     func rename(lump: Lump, as name: String) {
-        let currentName = lump.name
+        let oldName = lump.name
         let oldNameBytes = lump.nameBytes
         lump.name = name
+
+        // only register real changes
         if oldNameBytes == lump.nameBytes {
             return
         }
-        undo?.registerUndo(withTarget: self, handler: { _ in
-            self.rename(lump: lump, as: currentName)
-        })
+        delegate?.wadOperationsUndo {
+            self.rename(lump: lump, as: oldName)
+        }
         delegate?.wadOperationsUpdateView()
     }
 }

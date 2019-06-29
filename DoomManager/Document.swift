@@ -24,7 +24,6 @@ class Document: NSDocument, WadOperationsDelegate {
         super.init()
         // Add your subclass-specific initialization here.
         operations.delegate = self
-        operations.undo = undoManager
     }
 
     ///
@@ -63,6 +62,9 @@ class Document: NSDocument, WadOperationsDelegate {
         }
     }
 
+    ///
+    /// Delegate asked to send an undoer
+    ///
     func wadOperationsUndo(closure: @escaping () -> Void) {
         undoManager?.registerUndo(withTarget: self) {_ in
             closure()
