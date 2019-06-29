@@ -27,11 +27,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var document: Document? {
         return NSDocumentController.shared.currentDocument as? Document
     }
-
-    ///
-    /// When "Import lump" is selected
-    ///
-    @IBAction func importLumpClicked(_ sender: AnyObject) {
-
-    }
 }

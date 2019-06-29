@@ -115,4 +115,24 @@ class WadOperations {
             pos += 1
         }
     }
+
+    ///
+    /// Load many lumps from URLs, potentially populating post given indices
+    ///
+    func importLumps(urls: [URL], afterEachIndex indices: IndexSet) {
+
+        var fullIndices = Array(indices)
+        while fullIndices.count < urls.count {
+            fullIndices.append(fullIndices.max() ?? -1)
+        }
+
+        var pos = 0
+
+        for url in urls {
+            if let lump = Lump(url: url) {
+                add(lump: lump, index: fullIndices[pos] + 1 + pos)
+                pos += 1
+            }
+        }
+    }
 }

@@ -18,6 +18,7 @@ class Document: NSDocument, WadOperationsDelegate {
 
     @IBOutlet var lumpList: NSTableView!
     @IBOutlet var lumpListDelegate: LumpViewDelegate!
+    @IBOutlet var mainWindow: NSWindow! // need this because "window" is ambiguous
 
     override init() {
         operations = WadOperations(wad: wad)
@@ -127,6 +128,9 @@ class Document: NSDocument, WadOperationsDelegate {
         lumpList.selectRowIndexes(decrementedSet, byExtendingSelection: false)
     }
 
+    ///
+    /// Move down clicked
+    ///
     @IBAction func moveLumpDownClicked(_ sender: Any?) {
         let indexSet = lumpList.selectedRowIndexes
         let incrementedSet = indexSet.incremented(maximum: lumpList.numberOfRows - 1)
@@ -135,5 +139,22 @@ class Document: NSDocument, WadOperationsDelegate {
         }
         operations.moveLumpsDown(indices: lumpList.selectedRowIndexes)
         lumpList.selectRowIndexes(incrementedSet, byExtendingSelection: false)
+    }
+
+    ///
+    /// Import one or more lumps
+    ///
+    @IBAction func importLumpClicked(_ sender: Any?) {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = false
+        panel.allowsMultipleSelection = true
+        panel.title = "Import Lumps"
+        panel.prompt = "Import"
+        panel.beginSheetModal(for: mainWindow) { response in
+            if response == .OK {
+                self.operations.importLumps(urls: panel.urls, afterEachIndex: self.lumpList.selectedRowIndexes)
+            }
+        }
     }
 }

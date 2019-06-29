@@ -361,7 +361,7 @@ CA
                             <menuItem title="Import Lumps…" id="ovw-Fj-8jc">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="importLumpClicked:" target="Voe-Tx-rLC" id="5hT-2K-YXV"/>
+                                    <action selector="importLumpClicked:" target="-1" id="OwC-sG-znv"/>
                                 </connections>
                             </menuItem>
                         </items>
