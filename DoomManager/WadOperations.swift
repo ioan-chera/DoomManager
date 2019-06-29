@@ -14,6 +14,7 @@ import Foundation
 protocol WadOperationsDelegate: class {
     func wadOperationsUndo(closure: @escaping () -> Void)
     func wadOperationsUpdateView()
+    func wadOperationsMassMoved(indexSet: IndexSet)
 }
 
 ///
@@ -60,7 +61,7 @@ class WadOperations {
     /// Delete one lump
     ///
     private func deleteLump(index: Int) {
-        let lump = wad.delete(lumpAtIndex: index)
+        let lump = wad.deleteLump(index: index)
         delegate?.wadOperationsUndo {
             self.add(lump: lump, index: index)
         }
@@ -74,5 +75,34 @@ class WadOperations {
         for index in Array(indices) {
             deleteLump(index: index)
         }
+    }
+
+    private func moveLump(index: Int, toIndex: Int) {
+        let lump = wad.deleteLump(index: index)
+        wad.add(lump: lump, index: toIndex)
+        delegate?.wadOperationsUndo {
+            self.moveLump(index: toIndex, toIndex: index)
+        }
+        delegate?.wadOperationsUpdateView()
+    }
+
+    ///
+    /// Move lumps up
+    ///
+    func moveLumpsUp(indices: IndexSet) {
+        let newIndices = indices.decremented(minimum: 0)
+        let newIndicesArray = Array(newIndices)
+        var pos = 0
+
+        // Remember to bring back to current position on undo
+        delegate?.wadOperationsUndo {
+            self.delegate?.wadOperationsMassMoved(indexSet: indices)
+        }
+
+        for index in Array(indices) {
+            moveLump(index: index, toIndex: newIndicesArray[pos])
+            pos += 1
+        }
+        delegate?.wadOperationsMassMoved(indexSet: newIndices)
     }
 }

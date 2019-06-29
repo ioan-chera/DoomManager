@@ -79,10 +79,19 @@ class Document: NSDocument, WadOperationsDelegate {
     }
 
     ///
+    /// When mass-moving took place, act upon it here
+    ///
+    func wadOperationsMassMoved(indexSet: IndexSet) {
+        lumpList.selectRowIndexes(indexSet, byExtendingSelection: false)
+    }
+
+    ///
     /// Validate menus
     ///
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        if menuItem.action == #selector(Document.delete(_:)) {
+        if menuItem.action == #selector(Document.delete(_:)) ||
+            menuItem.action == #selector(Document.moveLumpUpClicked(_:))
+        {
             return !lumpList.selectedRowIndexes.isEmpty
         }
         return super.validateMenuItem(menuItem)
@@ -93,5 +102,12 @@ class Document: NSDocument, WadOperationsDelegate {
     ///
     @objc func delete(_ sender: Any?) {
         operations.deleteLumps(indices: lumpList.selectedRowIndexes)
+    }
+
+    ///
+    /// Move up clicked
+    ///
+    @IBAction func moveLumpUpClicked(_ sender: Any?) {
+        operations.moveLumpsUp(indices: lumpList.selectedRowIndexes)
     }
 }

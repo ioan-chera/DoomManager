@@ -67,7 +67,7 @@ class Wad
     ///
     /// Deletes a lump
     ///
-    func delete(lumpAtIndex index: Int) -> Lump {
+    func deleteLump(index: Int) -> Lump {
         return lumps.remove(at: index)
     }
 
