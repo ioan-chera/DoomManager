@@ -89,6 +89,7 @@ class Document: NSDocument, WadOperationsDelegate {
             multiHighlightIndices?.insert(index)
         } else {    // otherwise it's just a unit
             lumpList.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: true)
+            wadOperationsBringAttention(index: index)
         }
     }
 
@@ -110,10 +111,21 @@ class Document: NSDocument, WadOperationsDelegate {
             if multiHighlightRefs == 1 {
                 lumpList.selectRowIndexes(indices, byExtendingSelection: false)
                 multiHighlightIndices = nil
+
+                if !indices.isEmpty {
+                    wadOperationsBringAttention(index: indices.max()!)
+                }
             }
         }
         multiHighlightRefs -= 1
         assert(multiHighlightRefs >= 0)
+    }
+
+    ///
+    /// Animates to a row (used when selecting isn't appropriate
+    ///
+    func wadOperationsBringAttention(index: Int) {
+        lumpList.animateToRow(index: index)
     }
 
     ///

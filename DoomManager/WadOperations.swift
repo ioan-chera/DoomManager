@@ -15,8 +15,14 @@ protocol WadOperationsDelegate: class {
     func wadOperationsUndo(closure: @escaping () -> Void)
     func wadOperationsUpdateView()
 
+    /// Just tell it to bring attention to item index without selecting
+    func wadOperationsBringAttention(index: Int)
+
+    /// Start multiselect session. This one both brings attention and highlights something
     func wadOperationsBeginMultiHighlight()
+    /// Add item to multiselect session (or just select if not in a session)
     func wadOperationsHighlight(index: Int)
+    /// End and commit a select session
     func wadOperationsEndMultiHighlight()
 }
 
@@ -67,6 +73,7 @@ class WadOperations {
     /// Delete one lump
     ///
     private func deleteLump(index: Int) {
+        delegate?.wadOperationsBringAttention(index: index)
         let lump = wad.deleteLump(index: index)
         delegate?.wadOperationsUndo {
             self.add(lump: lump, index: index)
