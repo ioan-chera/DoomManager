@@ -100,10 +100,6 @@ class Document: NSDocument, WadOperationsDelegate {
             multiHighlightIndices = IndexSet()
         }
         multiHighlightRefs += 1
-
-        undoManager?.registerUndo(withTarget: self) { _ in
-            self.wadOperationsEndMultiHighlight()
-        }
     }
 
     ///
@@ -118,9 +114,6 @@ class Document: NSDocument, WadOperationsDelegate {
         }
         multiHighlightRefs -= 1
         assert(multiHighlightRefs >= 0)
-        undoManager?.registerUndo(withTarget: self) { _ in
-            self.wadOperationsBeginMultiHighlight()
-        }
     }
 
     ///

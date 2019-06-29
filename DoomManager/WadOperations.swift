@@ -75,6 +75,22 @@ class WadOperations {
     }
 
     ///
+    /// Holds both multi-select boundaries and also sets up undo
+    ///
+    private func beginMultiHighlight() {
+        delegate?.wadOperationsBeginMultiHighlight()
+        delegate?.wadOperationsUndo {
+            self.endMultiHighlight()
+        }
+    }
+    private func endMultiHighlight() {
+        delegate?.wadOperationsEndMultiHighlight()
+        delegate?.wadOperationsUndo {
+            self.beginMultiHighlight()
+        }
+    }
+
+    ///
     /// Delete lumps
     ///
     func deleteLumps(indices: IndexSet) {
@@ -82,11 +98,11 @@ class WadOperations {
             return
         }
 
-        delegate?.wadOperationsBeginMultiHighlight()
+        beginMultiHighlight()
         for index in Array(indices) {
             deleteLump(index: index)
         }
-        delegate?.wadOperationsEndMultiHighlight()
+        endMultiHighlight()
     }
 
     private func moveLump(index: Int, toIndex: Int) {
@@ -113,12 +129,12 @@ class WadOperations {
         let newIndicesArray = Array(newIndices)
         var pos = 0
 
-        delegate?.wadOperationsBeginMultiHighlight()
+        beginMultiHighlight()
         for index in Array(indices) {
             moveLump(index: index, toIndex: newIndicesArray[pos])
             pos += 1
         }
-        delegate?.wadOperationsEndMultiHighlight()
+        endMultiHighlight()
     }
 
     ///
@@ -132,12 +148,12 @@ class WadOperations {
         let newIndicesArray = Array(Array(newIndices).reversed())
         var pos = 0
 
-        delegate?.wadOperationsBeginMultiHighlight()
+        beginMultiHighlight()
         for index in Array(indices).reversed() {
             moveLump(index: index, toIndex: newIndicesArray[pos])
             pos += 1
         }
-        delegate?.wadOperationsEndMultiHighlight()
+        endMultiHighlight()
     }
 
     ///
@@ -159,13 +175,13 @@ class WadOperations {
 
         var pos = 0
 
-        delegate?.wadOperationsBeginMultiHighlight()
+        beginMultiHighlight()
         for url in urls {
             if let lump = Lump(url: url) {
                 add(lump: lump, index: fullIndices[pos] + 1 + pos)
                 pos += 1
             }
         }
-        delegate?.wadOperationsEndMultiHighlight()
+        endMultiHighlight()
     }
 }
