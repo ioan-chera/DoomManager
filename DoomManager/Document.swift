@@ -167,7 +167,7 @@ class Document: NSDocument, WadOperationsDelegate {
         panel.prompt = "Import"
         panel.beginSheetModal(for: mainWindow) { response in
             if response == .OK {
-                self.operations.importLumps(urls: panel.urls, afterEachIndex: self.lumpList.selectedRowIndexes)
+                self.operations.importLumps(urls: panel.urls, afterIndex: self.lumpList.selectedRowIndexes.max())
             }
         }
     }

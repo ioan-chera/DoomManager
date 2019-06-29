@@ -159,7 +159,7 @@ class WadOperations {
     ///
     /// Load many lumps from URLs, potentially populating post given indices
     ///
-    func importLumps(urls: [URL], afterEachIndex indices: IndexSet) {
+    func importLumps(urls: [URL], afterIndex: Int?) {
 
         // Try to validate ahead of time
         let lumps = urls.compactMap { Lump(url: $0) }
@@ -168,19 +168,12 @@ class WadOperations {
             return
         }
 
-        var fullIndices = Array(indices)
-        while fullIndices.count < urls.count {
-            fullIndices.append(fullIndices.max() ?? -1)
-        }
-
-        var pos = 0
+        var index = (afterIndex ?? -1) + 1
 
         beginMultiHighlight()
-        for url in urls {
-            if let lump = Lump(url: url) {
-                add(lump: lump, index: fullIndices[pos] + 1 + pos)
-                pos += 1
-            }
+        for lump in lumps {
+            add(lump: lump, index: index)
+            index += 1
         }
         endMultiHighlight()
     }
