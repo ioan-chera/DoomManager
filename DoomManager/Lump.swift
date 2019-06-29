@@ -87,4 +87,14 @@ class Lump
         self.data = data.asArray()
         self.nameBytes = nameData.asArray()
     }
+
+    ///
+    /// Convenience from URL
+    ///
+    convenience init?(url: URL) {
+        guard let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        self.init(name: url.deletingPathExtension().lastPathComponent, data: data)
+    }
 }
