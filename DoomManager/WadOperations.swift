@@ -9,12 +9,13 @@
 import Foundation
 
 protocol WadOperationsDelegate: class {
-    func wadOperationsOccurred()
+    func wadOperationsUndo(closure: @escaping () -> Void)
+    func wadOperationsUpdateView()
 }
 
 class WadOperations {
-    var undo: UndoManager!
     private let wad: Wad
+    var undo: UndoManager?
 
     weak var delegate: WadOperationsDelegate?
 
@@ -25,9 +26,9 @@ class WadOperations {
     func rename(lump: Lump, as name: String) {
         let currentName = lump.name
         lump.name = name
-        undo.registerUndo {
+        undo?.registerUndo(withTarget: self, handler: { _ in
             self.rename(lump: lump, as: currentName)
-        }
-        delegate?.wadOperationsOccurred()
+        })
+        delegate?.wadOperationsUpdateView()
     }
 }

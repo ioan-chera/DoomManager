@@ -8,7 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="DoomManager" customModuleProvider="target">
             <connections>
                 <outlet property="lumpList" destination="X4p-Ap-n52" id="4yO-yx-c7G"/>
-                <outlet property="lumpViewDelegate" destination="Myc-yH-RWi" id="uMD-TA-Kav"/>
+                <outlet property="lumpListDelegate" destination="LVj-mg-vWD" id="S6L-fC-r9R"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -39,7 +39,7 @@
                                             <rect key="frame" x="1" y="0.0" width="198" height="411"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="SUX-nW-d7g" id="X4p-Ap-n52">
+                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="SUX-nW-d7g" viewBased="YES" id="X4p-Ap-n52">
                                                     <rect key="frame" x="0.0" y="0.0" width="198" height="386"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -58,8 +58,28 @@
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                            <prototypeCellViews>
+                                                                <tableCellView id="MG3-UO-FqG">
+                                                                    <rect key="frame" x="1" y="1" width="103" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Cs2-dk-qRO">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="103" height="17"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="ubA-PE-Vvn">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
+                                                                    <connections>
+                                                                        <outlet property="textField" destination="Cs2-dk-qRO" id="c59-dV-aQQ"/>
+                                                                    </connections>
+                                                                </tableCellView>
+                                                            </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn width="89" minWidth="10" maxWidth="3.4028234663852886e+38" id="mkG-kd-cDZ">
+                                                        <tableColumn identifier="type" width="89.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="mkG-kd-cDZ">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Type">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -71,10 +91,31 @@
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                            <prototypeCellViews>
+                                                                <tableCellView id="Cdb-o5-wwQ">
+                                                                    <rect key="frame" x="106.5" y="1" width="89" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="NMb-15-Fa4">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="89" height="17"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Ilm-e8-2e1">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
+                                                                    <connections>
+                                                                        <outlet property="textField" destination="NMb-15-Fa4" id="EoL-GB-WK6"/>
+                                                                    </connections>
+                                                                </tableCellView>
+                                                            </prototypeCellViews>
                                                         </tableColumn>
                                                     </tableColumns>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="Myc-yH-RWi" id="2Dp-g5-Bgk"/>
+                                                        <outlet property="dataSource" destination="LVj-mg-vWD" id="Jp5-rR-ivf"/>
+                                                        <outlet property="delegate" destination="LVj-mg-vWD" id="0kH-zW-fUD"/>
                                                     </connections>
                                                 </tableView>
                                             </subviews>
@@ -111,6 +152,6 @@
             </connections>
             <point key="canvasLocation" x="139.5" y="146.5"/>
         </window>
-        <customObject id="Myc-yH-RWi" customClass="LumpViewDelegate" customModule="DoomManager" customModuleProvider="target"/>
+        <customObject id="LVj-mg-vWD" customClass="LumpViewDelegate" customModule="DoomManager" customModuleProvider="target"/>
     </objects>
 </document>

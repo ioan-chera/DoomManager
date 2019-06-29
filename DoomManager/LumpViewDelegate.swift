@@ -12,38 +12,28 @@ import Foundation
 ///
 /// Delegate of the lump table
 ///
-class LumpViewDelegate : NSObject, NSTableViewDataSource {
+class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
 
-    private let columnIndexLumpName = 0
-    private let columnIndexLumpType = 1
+    var wad: Wad?
 
-    weak var document: Document?
-
+    ///
+    /// Required number of rows
+    ///
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return document?.wad.lumps.count ?? 0
+        return wad?.lumps.count ?? 0
     }
 
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard let document = document else {
-            return nil
-        }
-        if tableColumn === tableView.tableColumns[columnIndexLumpName] {
-            return document.wad.lumps[row].name
-        } else if (tableColumn === tableView.tableColumns[columnIndexLumpType]) {
-            return analyzeLumpType(document.wad.lumps[row]).rawValue
+    ///
+    /// Get the view for the table at the given column
+    ///
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        if tableColumn?.identifier.rawValue == "lump" {
+            let lumpName = wad?.lumps[row].name ?? ""
+            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("lump"), owner: nil) as? NSTableCellView {
+                cell.textField?.stringValue = lumpName
+                return cell
+            }
         }
         return nil
-    }
-
-    ///
-    /// Renaming support
-    ///
-    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        guard let document = document else {
-            return
-        }
-        if tableColumn === tableView.tableColumns[columnIndexLumpName] {
-            document.operations.rename(lump: document.wad.lumps[row], as: object as! String)
-        }
     }
 }

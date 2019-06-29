@@ -8,22 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10CB22BE767B005A605C /* AppDelegate.swift */; };
-		4F5E10CE22BE767B005A605C /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10CD22BE767B005A605C /* Document.swift */; };
-		4F5E10D122BE767B005A605C /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10CF22BE767B005A605C /* Document.xib */; };
 		4F5E10D322BE767E005A605C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D222BE767E005A605C /* Assets.xcassets */; };
 		4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D422BE767E005A605C /* MainMenu.xib */; };
 		4F5E10E222BE767E005A605C /* DoomManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10E122BE767E005A605C /* DoomManagerTests.swift */; };
 		4F5E10ED22BE767E005A605C /* DoomManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10EC22BE767E005A605C /* DoomManagerUITests.swift */; };
-		4F94E72322BF6AAD008DB033 /* Lump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72122BF6AAD008DB033 /* Lump.swift */; };
-		4F94E72422BF6AAD008DB033 /* Wad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72222BF6AAD008DB033 /* Wad.swift */; };
+		4F769D9922C76D3000E7E702 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F769D9722C76D2F00E7E702 /* Document.swift */; };
+		4F769D9A22C76D3000E7E702 /* LumpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F769D9822C76D3000E7E702 /* LumpViewDelegate.swift */; };
+		4F769D9D22C76D3A00E7E702 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F769D9B22C76D3A00E7E702 /* Document.xib */; };
+		4F769DA222C76D4500E7E702 /* Lump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F769D9E22C76D4500E7E702 /* Lump.swift */; };
+		4F769DA322C76D4500E7E702 /* LumpAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F769D9F22C76D4500E7E702 /* LumpAnalysis.swift */; };
+		4F769DA422C76D4500E7E702 /* WadOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F769DA022C76D4500E7E702 /* WadOperations.swift */; };
+		4F769DA522C76D4500E7E702 /* Wad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F769DA122C76D4500E7E702 /* Wad.swift */; };
 		4F94E72622BF6AFA008DB033 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72522BF6AFA008DB033 /* DataExtension.swift */; };
 		4F94E72822BF6B28008DB033 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72722BF6B28008DB033 /* Errors.swift */; };
-		4F94E72A22BF6FF1008DB033 /* LumpAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72922BF6FF1008DB033 /* LumpAnalysis.swift */; };
 		4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72B22BF7E21008DB033 /* DataReader.swift */; };
 		4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72D22BF888A008DB033 /* DoomGraphics.swift */; };
-		4F94E73022C15935008DB033 /* UndoManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72F22C15935008DB033 /* UndoManagerExtension.swift */; };
-		4F94E73222C159AE008DB033 /* LumpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E73122C159AE008DB033 /* LumpViewDelegate.swift */; };
-		4FCD838B22C1602C004753DA /* WadOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD838A22C1602C004753DA /* WadOperations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +45,6 @@
 /* Begin PBXFileReference section */
 		4F5E10C822BE767B005A605C /* DoomManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoomManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E10CB22BE767B005A605C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4F5E10CD22BE767B005A605C /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		4F5E10D022BE767B005A605C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		4F5E10D222BE767E005A605C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F5E10D522BE767E005A605C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4F5E10D722BE767E005A605C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,16 +55,17 @@
 		4F5E10E822BE767E005A605C /* DoomManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoomManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E10EC22BE767E005A605C /* DoomManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomManagerUITests.swift; sourceTree = "<group>"; };
 		4F5E10EE22BE767E005A605C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F94E72122BF6AAD008DB033 /* Lump.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lump.swift; sourceTree = "<group>"; };
-		4F94E72222BF6AAD008DB033 /* Wad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wad.swift; sourceTree = "<group>"; };
+		4F769D9722C76D2F00E7E702 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		4F769D9822C76D3000E7E702 /* LumpViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LumpViewDelegate.swift; sourceTree = "<group>"; };
+		4F769D9C22C76D3A00E7E702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		4F769D9E22C76D4500E7E702 /* Lump.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lump.swift; sourceTree = "<group>"; };
+		4F769D9F22C76D4500E7E702 /* LumpAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LumpAnalysis.swift; sourceTree = "<group>"; };
+		4F769DA022C76D4500E7E702 /* WadOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WadOperations.swift; sourceTree = "<group>"; };
+		4F769DA122C76D4500E7E702 /* Wad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wad.swift; sourceTree = "<group>"; };
 		4F94E72522BF6AFA008DB033 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		4F94E72722BF6B28008DB033 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		4F94E72922BF6FF1008DB033 /* LumpAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumpAnalysis.swift; sourceTree = "<group>"; };
 		4F94E72B22BF7E21008DB033 /* DataReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReader.swift; sourceTree = "<group>"; };
 		4F94E72D22BF888A008DB033 /* DoomGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomGraphics.swift; sourceTree = "<group>"; };
-		4F94E72F22C15935008DB033 /* UndoManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoManagerExtension.swift; sourceTree = "<group>"; };
-		4F94E73122C159AE008DB033 /* LumpViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumpViewDelegate.swift; sourceTree = "<group>"; };
-		4FCD838A22C1602C004753DA /* WadOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WadOperations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,26 +116,20 @@
 		4F5E10CA22BE767B005A605C /* DoomManager */ = {
 			isa = PBXGroup;
 			children = (
+				4F769D9622C76D0300E7E702 /* Document */,
+				4F769D8C22C76CCC00E7E702 /* Wad */,
 				4F5E10CB22BE767B005A605C /* AppDelegate.swift */,
 				4F94E72522BF6AFA008DB033 /* DataExtension.swift */,
 				4F94E72B22BF7E21008DB033 /* DataReader.swift */,
-				4F5E10CD22BE767B005A605C /* Document.swift */,
-				4F5E10CF22BE767B005A605C /* Document.xib */,
 				4F5E10D222BE767E005A605C /* Assets.xcassets */,
 				4F94E72D22BF888A008DB033 /* DoomGraphics.swift */,
 				4F94E72722BF6B28008DB033 /* Errors.swift */,
-				4F94E72122BF6AAD008DB033 /* Lump.swift */,
-				4F94E72922BF6FF1008DB033 /* LumpAnalysis.swift */,
-				4F94E73122C159AE008DB033 /* LumpViewDelegate.swift */,
 				4F5E10D422BE767E005A605C /* MainMenu.xib */,
 				4F5E10D722BE767E005A605C /* Info.plist */,
 				4F5E10D822BE767E005A605C /* DoomManager.entitlements */,
-				4F94E72F22C15935008DB033 /* UndoManagerExtension.swift */,
-				4F94E72222BF6AAD008DB033 /* Wad.swift */,
-				4FCD838A22C1602C004753DA /* WadOperations.swift */,
 			);
 			path = DoomManager;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		4F5E10E022BE767E005A605C /* DoomManagerTests */ = {
 			isa = PBXGroup;
@@ -155,6 +147,27 @@
 				4F5E10EE22BE767E005A605C /* Info.plist */,
 			);
 			path = DoomManagerUITests;
+			sourceTree = "<group>";
+		};
+		4F769D8C22C76CCC00E7E702 /* Wad */ = {
+			isa = PBXGroup;
+			children = (
+				4F769D9E22C76D4500E7E702 /* Lump.swift */,
+				4F769D9F22C76D4500E7E702 /* LumpAnalysis.swift */,
+				4F769DA122C76D4500E7E702 /* Wad.swift */,
+				4F769DA022C76D4500E7E702 /* WadOperations.swift */,
+			);
+			name = Wad;
+			sourceTree = "<group>";
+		};
+		4F769D9622C76D0300E7E702 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				4F769D9B22C76D3A00E7E702 /* Document.xib */,
+				4F769D9722C76D2F00E7E702 /* Document.swift */,
+				4F769D9822C76D3000E7E702 /* LumpViewDelegate.swift */,
+			);
+			name = Document;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,8 +274,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F769D9D22C76D3A00E7E702 /* Document.xib in Resources */,
 				4F5E10D322BE767E005A605C /* Assets.xcassets in Resources */,
-				4F5E10D122BE767B005A605C /* Document.xib in Resources */,
 				4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,17 +301,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F769D9A22C76D3000E7E702 /* LumpViewDelegate.swift in Sources */,
 				4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */,
-				4F94E73022C15935008DB033 /* UndoManagerExtension.swift in Sources */,
-				4FCD838B22C1602C004753DA /* WadOperations.swift in Sources */,
+				4F769DA322C76D4500E7E702 /* LumpAnalysis.swift in Sources */,
 				4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */,
-				4F94E72422BF6AAD008DB033 /* Wad.swift in Sources */,
-				4F5E10CE22BE767B005A605C /* Document.swift in Sources */,
-				4F94E72322BF6AAD008DB033 /* Lump.swift in Sources */,
+				4F769DA222C76D4500E7E702 /* Lump.swift in Sources */,
+				4F769DA522C76D4500E7E702 /* Wad.swift in Sources */,
+				4F769D9922C76D3000E7E702 /* Document.swift in Sources */,
+				4F769DA422C76D4500E7E702 /* WadOperations.swift in Sources */,
 				4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */,
-				4F94E73222C159AE008DB033 /* LumpViewDelegate.swift in Sources */,
 				4F94E72822BF6B28008DB033 /* Errors.swift in Sources */,
-				4F94E72A22BF6FF1008DB033 /* LumpAnalysis.swift in Sources */,
 				4F94E72622BF6AFA008DB033 /* DataExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,20 +347,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4F5E10CF22BE767B005A605C /* Document.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4F5E10D022BE767B005A605C /* Base */,
-			);
-			name = Document.xib;
-			sourceTree = "<group>";
-		};
 		4F5E10D422BE767E005A605C /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4F5E10D522BE767E005A605C /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		4F769D9B22C76D3A00E7E702 /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F769D9C22C76D3A00E7E702 /* Base */,
+			);
+			name = Document.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

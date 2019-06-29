@@ -8,28 +8,36 @@
 
 import Cocoa
 
+private let columnIndexLumpName = 0
+private let columnIndexLumpType = 1
+
 class Document: NSDocument, WadOperationsDelegate {
 
-    let wad = Wad()
-    @IBOutlet var lumpList: NSTableView!
-    @IBOutlet var lumpViewDelegate: LumpViewDelegate!
+    private let wad = Wad()
+    private let operations: WadOperations
 
-    let operations: WadOperations
+    @IBOutlet var lumpList: NSTableView!
+    @IBOutlet var lumpListDelegate: LumpViewDelegate!
 
     override init() {
         operations = WadOperations(wad: wad)
         super.init()
         // Add your subclass-specific initialization here.
-        operations.undo = undoManager
         operations.delegate = self
+        operations.undo = undoManager
+    }
+
+    ///
+    /// Setup NIB-connected objects
+    ///
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Give all data they need
+        lumpListDelegate.wad = wad
     }
 
     override class var autosavesInPlace: Bool {
         return true
-    }
-
-    override func awakeFromNib() {
-        lumpViewDelegate.document = self
     }
 
     override var windowNibName: NSNib.Name? {
@@ -49,13 +57,23 @@ class Document: NSDocument, WadOperationsDelegate {
         // Alternatively, you could remove this method and override read(from:ofType:) instead.
         // If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
         do {
+
             try wad.read(data)
         } catch DMError.wadReading(let info) {
             throw NSError(domain: NSOSStatusErrorDomain, code: readErr, userInfo: [NSLocalizedDescriptionKey: info])
         }
     }
 
-    func wadOperationsOccurred() {
+    func wadOperationsUndo(closure: @escaping () -> Void) {
+        undoManager?.registerUndo(withTarget: self) {_ in
+            closure()
+        }
+    }
+
+    ///
+    /// Called when the wad operation demands an update
+    ///
+    func wadOperationsUpdateView() {
         lumpList.reloadData()
     }
 }
