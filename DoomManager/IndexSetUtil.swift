@@ -19,11 +19,27 @@ extension IndexSet {
         let numbers = Array(self)
         var newSet = Set<Int>()
         for number in numbers {
-            if number == minimum || newSet.contains(number - 1) {
+            if number <= minimum || newSet.contains(number - 1) {
                 newSet.insert(number)
                 continue
             }
             newSet.insert(number - 1)
+        }
+        return IndexSet(newSet)
+    }
+
+    ///
+    /// Gets an incremented index set for a given maximum
+    ///
+    func incremented(maximum: Int) -> IndexSet {
+        let numbers = Array(self).reversed()
+        var newSet = Set<Int>()
+        for number in numbers {
+            if number >= maximum || newSet.contains(number + 1) {
+                newSet.insert(number)
+                continue
+            }
+            newSet.insert(number + 1)
         }
         return IndexSet(newSet)
     }

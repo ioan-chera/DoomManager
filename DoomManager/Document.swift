@@ -79,28 +79,38 @@ class Document: NSDocument, WadOperationsDelegate {
     }
 
     ///
-    /// When mass-moving took place, act upon it here
-    ///
-    func wadOperationsMassMoved(indexSet: IndexSet) {
-        lumpList.selectRowIndexes(indexSet, byExtendingSelection: false)
-    }
-
-    ///
     /// Validate menus
     ///
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        if menuItem.action == #selector(Document.delete(_:)) ||
-            menuItem.action == #selector(Document.moveLumpUpClicked(_:))
-        {
+
+        // Actions run on selected table items
+        let selectionActions = Set<Selector>([
+            #selector(Document.delete(_:)),
+            #selector(Document.moveLumpDownClicked(_:)),
+            #selector(Document.moveLumpUpClicked(_:))
+        ])
+
+        if menuItem.action != nil && selectionActions.contains(menuItem.action!) {
             return !lumpList.selectedRowIndexes.isEmpty
         }
         return super.validateMenuItem(menuItem)
     }
 
     ///
+    /// Helper method to add current selected rows to undo. Saves boilerplate.
+    ///
+    private func addCurrentSelectionToUndo() {
+        let indexSet = lumpList.selectedRowIndexes
+        undoManager?.registerUndo(withTarget: self) { _ in
+            self.lumpList.selectRowIndexes(indexSet, byExtendingSelection: false)
+        }
+    }
+
+    ///
     /// Delete responder
     ///
     @objc func delete(_ sender: Any?) {
+        addCurrentSelectionToUndo()
         operations.deleteLumps(indices: lumpList.selectedRowIndexes)
     }
 
@@ -108,6 +118,22 @@ class Document: NSDocument, WadOperationsDelegate {
     /// Move up clicked
     ///
     @IBAction func moveLumpUpClicked(_ sender: Any?) {
+        let indexSet = lumpList.selectedRowIndexes
+        let decrementedSet = indexSet.decremented(minimum: 0)
+        if indexSet != decrementedSet {
+            addCurrentSelectionToUndo()
+        }
         operations.moveLumpsUp(indices: lumpList.selectedRowIndexes)
+        lumpList.selectRowIndexes(decrementedSet, byExtendingSelection: false)
+    }
+
+    @IBAction func moveLumpDownClicked(_ sender: Any?) {
+        let indexSet = lumpList.selectedRowIndexes
+        let incrementedSet = indexSet.incremented(maximum: lumpList.numberOfRows - 1)
+        if indexSet != incrementedSet {
+            addCurrentSelectionToUndo()
+        }
+        operations.moveLumpsDown(indices: lumpList.selectedRowIndexes)
+        lumpList.selectRowIndexes(incrementedSet, byExtendingSelection: false)
     }
 }
