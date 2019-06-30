@@ -82,6 +82,11 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     func wadLumpCountUpdated(_ count: Int) {
         if lumpCountStatus != nil {
             lumpCountStatus.stringValue = countedWord(singular: "lump", plural: "lumps", count: count)
+            
+            // Most likely selection changed, so update that too
+            var notification = Notification(name: NSTableView.selectionDidChangeNotification)
+            notification.object = lumpList
+            lumpListDelegate.tableViewSelectionDidChange(notification)
         }
     }
 
