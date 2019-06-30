@@ -68,6 +68,15 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     }
 
     ///
+    /// Report status
+    ///
+    private func reportStatus(text: String) {
+        lastActionStatus.isHidden = false
+        lastActionStatus.stringValue = text
+        lastActionStatus.sizeToFit()
+    }
+
+    ///
     /// Delegate asked lump count update
     ///
     func wadLumpCountUpdated(_ count: Int) {
@@ -125,9 +134,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
             text.append(" \(countedWord(singular: "lump", plural: "lumps", count: value))")
             first = false
         }
-        lastActionStatus.isHidden = false
-        lastActionStatus.stringValue = text
-        lastActionStatus.sizeToFit()
+        reportStatus(text: text)
         multiActionReport.removeAll()
     }
 
@@ -268,8 +275,10 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
                         alert.messageText = "Couldn't export lump '\(lump.name)' to '\(url.path)'"
                         alert.informativeText = "Path may be invalid or inaccessible. Check if you have write access to that location."
                         alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
+                        self.reportStatus(text: "Failed exporting 1 lump")
                         return
                     }
+                    self.reportStatus(text: "Exported 1 lump")
                 }
             }
         } else {
@@ -312,7 +321,15 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
                             alert.messageText = "Failed exporting the following " + countedWord(singular: "lump", plural: "lumps", count: failures.count) + " to '\(url.path)'"
                             alert.informativeText = stringEnumeration(array: failures, maxCount: 20, completionPunctuation: ".") + "\n\nCheck if you have write access to that location."
                             alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
+
+                            let lumpDisplay = countedWord(singular: "lump", plural: "lumps", count: lumps.count - failures.count)
+                            let failedDisplay = countedWord(singular: "lump", plural: "lumps", count: failures.count)
+                            self.reportStatus(text: "Exported \(lumpDisplay), failed \(failedDisplay)")
+                        } else {
+                            self.reportStatus(text: "Exported \(countedWord(singular: "lump", plural: "lumps", count: lumps.count))")
                         }
+
+
                     }
 
                     if !overwritten.isEmpty {
