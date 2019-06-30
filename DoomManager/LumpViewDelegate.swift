@@ -17,6 +17,8 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
     private var wad: Wad?
     private var wadOperations: WadOperations?
 
+    @IBOutlet var selectedCountStatus: NSTextField!
+
     ///
     /// Grouped setter
     ///
@@ -50,6 +52,20 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
             }
         }
         return nil
+    }
+
+    ///
+    /// Update selection status
+    ///
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let tableView = notification.object as! NSTableView
+        let number = tableView.numberOfSelectedRows
+        if number == 0 {
+            selectedCountStatus.isHidden = true
+        } else {
+            selectedCountStatus.isHidden = false
+            selectedCountStatus.stringValue = String(tableView.numberOfSelectedRows) + " selected"
+        }
     }
 
     ///

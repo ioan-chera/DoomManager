@@ -95,7 +95,7 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="Cdb-o5-wwQ">
-                                                                    <rect key="frame" x="106.5" y="1" width="89" height="17"/>
+                                                                    <rect key="frame" x="107" y="1" width="89" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="NMb-15-Fa4">
@@ -148,9 +148,18 @@
                         </holdingPriorities>
                     </splitView>
                     <textField identifier="LumpCountLabel" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wdW-aA-hGn">
-                        <rect key="frame" x="3" y="3" width="57" height="14"/>
+                        <rect key="frame" x="3" y="3" width="83" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="0 Lumps" id="Ksh-vb-ubP">
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="0 Lumps" id="Ksh-vb-ubP">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField identifier="SelectedCountLabel" hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="VeR-qt-SaZ">
+                        <rect key="frame" x="95" y="3" width="90" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="0 Selected" id="1zo-6m-7ic">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -160,6 +169,10 @@
                         <rect key="frame" x="0.0" y="18" width="507" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     </box>
+                    <box horizontalHuggingPriority="750" boxType="separator" id="lrm-1J-aVA">
+                        <rect key="frame" x="89" y="0.0" width="5" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </box>
                 </subviews>
             </view>
             <connections>
@@ -167,6 +180,10 @@
             </connections>
             <point key="canvasLocation" x="139.5" y="146.5"/>
         </window>
-        <customObject id="LVj-mg-vWD" customClass="LumpViewDelegate" customModule="DoomManager" customModuleProvider="target"/>
+        <customObject id="LVj-mg-vWD" customClass="LumpViewDelegate" customModule="DoomManager" customModuleProvider="target">
+            <connections>
+                <outlet property="selectedCountStatus" destination="VeR-qt-SaZ" id="Ub7-Qa-KHU"/>
+            </connections>
+        </customObject>
     </objects>
 </document>

@@ -71,8 +71,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     ///
     func wadLumpCountUpdated(_ count: Int) {
         if lumpCountStatus != nil {
-            lumpCountStatus.stringValue = countedWord(singular: "Lump", plural: "Lumps", count: count)
-            lumpCountStatus.sizeToFit()
+            lumpCountStatus.stringValue = countedWord(singular: "lump", plural: "lumps", count: count)
         }
     }
 
