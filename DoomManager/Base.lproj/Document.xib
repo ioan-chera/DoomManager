@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="DoomManager" customModuleProvider="target">
             <connections>
+                <outlet property="lumpCountStatus" destination="wdW-aA-hGn" id="MsB-Sa-gM7"/>
                 <outlet property="lumpList" destination="X4p-Ap-n52" id="4yO-yx-c7G"/>
                 <outlet property="lumpListDelegate" destination="LVj-mg-vWD" id="S6L-fC-r9R"/>
                 <outlet property="mainWindow" destination="xOd-HO-29H" id="dnv-r9-NEK"/>
@@ -26,22 +27,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" id="AcT-9x-j9c">
-                        <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
+                        <rect key="frame" x="0.0" y="20" width="507" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <customView id="xIy-Ja-jF7">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="413"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="393"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="lqy-OF-L2f">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="412"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="392"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" id="lev-by-d77">
-                                            <rect key="frame" x="1" y="0.0" width="198" height="411"/>
+                                            <rect key="frame" x="1" y="0.0" width="198" height="391"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="SUX-nW-d7g" viewBased="YES" id="X4p-Ap-n52">
-                                                    <rect key="frame" x="0.0" y="0.0" width="198" height="386"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="198" height="366"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -137,7 +138,7 @@
                                 </subviews>
                             </customView>
                             <customView id="22c-i6-Qkq">
-                                <rect key="frame" x="201" y="0.0" width="306" height="413"/>
+                                <rect key="frame" x="201" y="0.0" width="306" height="393"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </customView>
                         </subviews>
@@ -146,6 +147,19 @@
                             <real value="250"/>
                         </holdingPriorities>
                     </splitView>
+                    <textField identifier="LumpCountLabel" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wdW-aA-hGn">
+                        <rect key="frame" x="3" y="3" width="57" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="0 Lumps" id="Ksh-vb-ubP">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <box verticalHuggingPriority="750" boxType="separator" id="mkO-Q7-5fB">
+                        <rect key="frame" x="0.0" y="18" width="507" height="5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    </box>
                 </subviews>
             </view>
             <connections>

@@ -18,7 +18,9 @@
 
 import Foundation
 
-
+protocol WadDelegate: class {
+    func wadLumpCountUpdated(_ count: Int)
+}
 
 ///
 /// Wad file data. Contains the kind (IWAD or PWAD) and lump list (array)
@@ -36,6 +38,7 @@ class Wad
 
     private(set) var type: WadType
     private(set) var lumps: [Lump]
+    weak var delegate: WadDelegate?
 
     init(inType: WadType = WadType.pwad)
     {
@@ -48,6 +51,7 @@ class Wad
     ///
     func add(lump: Lump) {
         lumps.append(lump)
+        delegate?.wadLumpCountUpdated(lumps.count)
     }
 
     ///
@@ -55,6 +59,7 @@ class Wad
     ///
     func add(lump: Lump, index: Int) {
         lumps.insert(lump, at: index)
+        delegate?.wadLumpCountUpdated(lumps.count)
     }
 
     ///
@@ -68,7 +73,9 @@ class Wad
     /// Deletes a lump
     ///
     func deleteLump(index: Int) -> Lump {
-        return lumps.remove(at: index)
+        let result = lumps.remove(at: index)
+        delegate?.wadLumpCountUpdated(lumps.count)
+        return result
     }
 
     ///
@@ -117,6 +124,7 @@ class Wad
         // ok
         self.type = newType
         self.lumps = newLumps
+        delegate?.wadLumpCountUpdated(lumps.count)
     }
 
     func serialized() -> Data  {

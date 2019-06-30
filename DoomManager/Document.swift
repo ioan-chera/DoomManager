@@ -11,13 +11,14 @@ import Cocoa
 ///
 /// The document
 ///
-class Document: NSDocument, WadOperationsDelegate {
+class Document: NSDocument, WadDelegate, WadOperationsDelegate {
 
     private let wad = Wad()
     private let operations: WadOperations
 
     @IBOutlet var lumpList: NSTableView!
     @IBOutlet var lumpListDelegate: LumpViewDelegate!
+    @IBOutlet var lumpCountStatus: NSTextField!
     @IBOutlet var mainWindow: NSWindow! // need this because "window" is ambiguous
 
     override init() {
@@ -25,6 +26,7 @@ class Document: NSDocument, WadOperationsDelegate {
         super.init()
         // Add your subclass-specific initialization here.
         operations.delegate = self
+        wad.delegate = self
     }
 
     ///
@@ -37,6 +39,7 @@ class Document: NSDocument, WadOperationsDelegate {
     override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
         super.windowControllerDidLoadNib(windowController)
         lumpListDelegate.set(wad: wad, operations: operations)
+        wadLumpCountUpdated(wad.lumps.count)    // calling this is needed
     }
 
     override var windowNibName: NSNib.Name? {
@@ -60,6 +63,16 @@ class Document: NSDocument, WadOperationsDelegate {
             try wad.read(data)
         } catch DMError.wadReading(let info) {
             throw NSError(domain: NSOSStatusErrorDomain, code: readErr, userInfo: [NSLocalizedDescriptionKey: info])
+        }
+    }
+
+    ///
+    /// Delegate asked lump count update
+    ///
+    func wadLumpCountUpdated(_ count: Int) {
+        if lumpCountStatus != nil {
+            lumpCountStatus.stringValue = countedWord(singular: "Lump", plural: "Lumps", count: count)
+            lumpCountStatus.sizeToFit()
         }
     }
 

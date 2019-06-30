@@ -106,7 +106,7 @@ class WadOperations {
         }
 
         beginMultiHighlight()
-        for index in Array(indices) {
+        for index in indices.reversed() {
             deleteLump(index: index)
         }
         endMultiHighlight()
