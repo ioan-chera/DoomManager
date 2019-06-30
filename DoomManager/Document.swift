@@ -189,28 +189,91 @@ class Document: NSDocument, WadOperationsDelegate {
     /// Export one or more lumps
     ///
     @IBAction func exportLumpClicked(_ sender: Any?) {
-        let panel = NSSavePanel()
-        panel.title = "Export Lump"
-        panel.prompt = "Export"
-        panel.canCreateDirectories = true
-        let lump = self.wad.lumps[self.lumpList.selectedRow]
-        //
-        // TODO i6: guess format and suggest appropriate extension
-        //
-        panel.nameFieldStringValue = lump.name + ".lmp"
-        panel.beginSheetModal(for: mainWindow) { response in
-            if response == .OK {
-                // this is not an operation
-                guard let url = panel.url else {
-                    return
+        let lumpCount = lumpList.selectedRowIndexes.count
+        if lumpCount == 1 {
+            let panel = NSSavePanel()
+            panel.title = "Export Lump"
+            panel.prompt = "Export"
+            panel.canCreateDirectories = true
+            let lump = wad.lumps[lumpList.selectedRow]
+            //
+            // TODO i6: guess format and suggest appropriate extension
+            //
+            panel.nameFieldStringValue = lump.name + ".lmp"
+            panel.beginSheetModal(for: mainWindow) { response in
+                if response == .OK {
+                    // this is not an operation
+                    guard let url = panel.url else {
+                        return
+                    }
+                    guard (try? lump.write(url: url)) != nil else {
+                        let alert = NSAlert()
+                        alert.alertStyle = .warning
+                        alert.messageText = "Couldn't export lump '\(lump.name)' to '\(url.path)'"
+                        alert.informativeText = "Path may be invalid or inaccessible. Check if you have write access to that location."
+                        alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
+                        return
+                    }
                 }
-                guard (try? lump.write(url: url)) != nil else {
-                    let alert = NSAlert()
-                    alert.alertStyle = .warning
-                    alert.messageText = "Couldn't export lump '\(lump.name)' to '\(url.path)'"
-                    alert.informativeText = "Path may be invalid or inaccessible. Check if you have write access to that location."
-                    alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
-                    return
+            }
+        } else {
+            // Multiple selection
+            let panel = NSOpenPanel()   // "open" a folder for writing into
+            panel.canChooseFiles = false
+            panel.canChooseDirectories = true
+            panel.allowsMultipleSelection = false
+            panel.title = "Export \(lumpCount) Lumps"
+            panel.prompt = "Export"
+            panel.message = "All \(lumpCount) lumps will be exported to selected folder."
+            panel.canCreateDirectories = true
+            panel.beginSheetModal(for: mainWindow) { response in
+                if response == .OK {
+                    guard let url = panel.url else {
+                        return
+                    }
+                    let lumps = (self.wad.lumps as NSArray).objects(at: self.lumpList.selectedRowIndexes) as! [Lump]
+                    let filenames = lumps.map { $0.name + ".lmp" }
+                    let overwritten = filenames.compactMap { filename -> String? in
+                        let url = url.appendingPathComponent(filename)
+                        return FileManager.default.fileExists(atPath: url.path) ? filename : nil
+                    }
+
+                    ///
+                    /// Nested function, needed because of make-sure alert
+                    ///
+                    func doExport() {
+                        var failures = [String]()
+                        for (lump, filename) in zip(lumps, filenames) {
+                            let lumpURL = url.appendingPathComponent(filename)
+                            if (try? lump.write(url: lumpURL)) == nil {
+                                failures.append(lump.name)
+                            }
+                        }
+
+                        if !failures.isEmpty {
+                            let alert = NSAlert()
+                            alert.alertStyle = .warning
+                            alert.messageText = "Failed exporting the following " + countedWord(singular: "lump", plural: "lumps", count: failures.count) + " to '\(url.path)'"
+                            alert.informativeText = stringEnumeration(array: failures, maxCount: 20, completionPunctuation: ".") + "\n\nCheck if you have write access to that location."
+                            alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
+                        }
+                    }
+
+                    if !overwritten.isEmpty {
+                        let alert = NSAlert()
+                        alert.alertStyle = .critical
+                        alert.messageText = "The following files already exist at '\(url.path)' and will be overwritten:"
+                        alert.informativeText = stringEnumeration(array: overwritten, maxCount: 20, completionPunctuation: ".") + "\n\nAre you sure you want to overwrite them?"
+                        alert.addButton(withTitle: "Overwrite")
+                        alert.addButton(withTitle: "Cancel")
+                        alert.beginSheetModal(for: self.mainWindow) { response in
+                            if response == .alertFirstButtonReturn {
+                                doExport()
+                            }
+                        }
+                    } else {
+                        doExport()
+                    }
                 }
             }
         }
