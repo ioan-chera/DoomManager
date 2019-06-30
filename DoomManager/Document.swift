@@ -19,6 +19,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     @IBOutlet var lumpList: NSTableView!
     @IBOutlet var lumpListDelegate: LumpViewDelegate!
     @IBOutlet var lumpCountStatus: NSTextField!
+    @IBOutlet var lastActionStatus: NSTextField!
     @IBOutlet var mainWindow: NSWindow! // need this because "window" is ambiguous
 
     override init() {
@@ -96,6 +97,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     ///
     private var multiHighlightIndices: IndexSet?
     private var multiHighlightRefs = 0
+    private var multiActionReport = [String: Int]()
     func wadOperationsHighlight(index: Int) {
         if multiHighlightIndices != nil {
             multiHighlightIndices?.insert(index)
@@ -106,9 +108,49 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     }
 
     ///
+    /// Helper to convert the report to a text
+    ///
+    private func consumeReport() {
+        var text = ""
+        var first = true
+        for (key, value) in multiActionReport {
+            if !first {
+                text.append(", \(key.lowercased())")
+            } else {
+                text.append("\(key)")
+            }
+            if undoManager?.isUndoing == true {
+                text.append(" back")
+            }
+            text.append(" \(countedWord(singular: "lump", plural: "lumps", count: value))")
+            first = false
+        }
+        lastActionStatus.isHidden = false
+        lastActionStatus.stringValue = text
+        lastActionStatus.sizeToFit()
+        multiActionReport.removeAll()
+    }
+
+    ///
+    /// Report an action to show it on the status bar
+    ///
+    func wadOperationsReportAction(name: String) {
+        if multiHighlightIndices != nil {
+            if let _ = multiActionReport[name] {
+                multiActionReport[name]! += 1
+            } else {
+                multiActionReport[name] = 1
+            }
+        } else {
+            multiActionReport[name] = 1
+            consumeReport()
+        }
+    }
+
+    ///
     /// Starting a session. NOTE: this must be put into undo because it's called from the operation
     ///
-    func wadOperationsBeginMultiHighlight() {
+    func wadOperationsBeginMultiAction() {
         if multiHighlightRefs == 0 {
             multiHighlightIndices = IndexSet()
         }
@@ -118,7 +160,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     ///
     /// Ending and committing a session
     ///
-    func wadOperationsEndMultiHighlight() {
+    func wadOperationsEndMultiAction() {
         if let indices = multiHighlightIndices {
             if multiHighlightRefs == 1 {
                 lumpList.selectRowIndexes(indices, byExtendingSelection: false)
@@ -127,6 +169,8 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
                 if !indices.isEmpty {
                     wadOperationsBringAttention(index: indices.max()!)
                 }
+
+                consumeReport()
             }
         }
         multiHighlightRefs -= 1

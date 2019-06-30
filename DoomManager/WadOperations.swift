@@ -19,11 +19,12 @@ protocol WadOperationsDelegate: class {
     func wadOperationsBringAttention(index: Int)
 
     /// Start multiselect session. This one both brings attention and highlights something
-    func wadOperationsBeginMultiHighlight()
+    func wadOperationsBeginMultiAction()
     /// Add item to multiselect session (or just select if not in a session)
     func wadOperationsHighlight(index: Int)
+    func wadOperationsReportAction(name: String)
     /// End and commit a select session
-    func wadOperationsEndMultiHighlight()
+    func wadOperationsEndMultiAction()
 }
 
 ///
@@ -55,6 +56,7 @@ class WadOperations {
         }
         delegate?.wadOperationsUpdateView()
         delegate?.wadOperationsHighlight(index: index)
+        delegate?.wadOperationsReportAction(name: "Renamed")
     }
 
     ///
@@ -67,6 +69,7 @@ class WadOperations {
         }
         delegate?.wadOperationsUpdateView()
         delegate?.wadOperationsHighlight(index: index)
+        delegate?.wadOperationsReportAction(name: "Added")
     }
 
     ///
@@ -79,19 +82,20 @@ class WadOperations {
             self.add(lump: lump, index: index)
         }
         delegate?.wadOperationsUpdateView()
+        delegate?.wadOperationsReportAction(name: "Deleted")
     }
 
     ///
     /// Holds both multi-select boundaries and also sets up undo
     ///
     private func beginMultiHighlight() {
-        delegate?.wadOperationsBeginMultiHighlight()
+        delegate?.wadOperationsBeginMultiAction()
         delegate?.wadOperationsUndo {
             self.endMultiHighlight()
         }
     }
     private func endMultiHighlight() {
-        delegate?.wadOperationsEndMultiHighlight()
+        delegate?.wadOperationsEndMultiAction()
         delegate?.wadOperationsUndo {
             self.beginMultiHighlight()
         }
@@ -123,6 +127,7 @@ class WadOperations {
         }
         delegate?.wadOperationsUpdateView()
         delegate?.wadOperationsHighlight(index: toIndex)
+        delegate?.wadOperationsReportAction(name: "Moved")
     }
 
     ///
@@ -156,7 +161,7 @@ class WadOperations {
         var pos = 0
 
         beginMultiHighlight()
-        for index in Array(indices).reversed() {
+        for index in indices.reversed() {
             moveLump(index: index, toIndex: newIndicesArray[pos])
             pos += 1
         }
