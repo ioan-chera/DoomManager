@@ -354,6 +354,12 @@ CA
                                     <action selector="importLumpClicked:" target="-1" id="OwC-sG-znv"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Export Lumps…" id="vXY-Df-8gp">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="exportLumpClicked:" target="-1" id="fqU-FP-GXe"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Move Lumps Up" keyEquivalent="" id="lJm-cu-0Dd">
                                 <connections>
                                     <action selector="moveLumpUpClicked:" target="-1" id="DjH-hT-apH"/>

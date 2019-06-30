@@ -97,4 +97,12 @@ class Lump
         }
         self.init(name: url.deletingPathExtension().lastPathComponent, data: data)
     }
+
+    ///
+    /// Write lump to a file (as a URL)
+    ///
+    func write(url: URL) throws {
+        let data = Data(bytes: self.data, count: self.data.count)
+        try data.write(to: url)
+    }
 }

@@ -136,6 +136,7 @@ class Document: NSDocument, WadOperationsDelegate {
         // Actions run on selected table items
         let selectionActions = Set<Selector>([
             #selector(Document.delete(_:)),
+            #selector(Document.exportLumpClicked(_:)),
             #selector(Document.moveLumpDownClicked(_:)),
             #selector(Document.moveLumpUpClicked(_:))
         ])
@@ -180,6 +181,37 @@ class Document: NSDocument, WadOperationsDelegate {
         panel.beginSheetModal(for: mainWindow) { response in
             if response == .OK {
                 self.operations.importLumps(urls: panel.urls, afterIndex: self.lumpList.selectedRowIndexes.max())
+            }
+        }
+    }
+
+    ///
+    /// Export one or more lumps
+    ///
+    @IBAction func exportLumpClicked(_ sender: Any?) {
+        let panel = NSSavePanel()
+        panel.title = "Export Lump"
+        panel.prompt = "Export"
+        panel.canCreateDirectories = true
+        let lump = self.wad.lumps[self.lumpList.selectedRow]
+        //
+        // TODO i6: guess format and suggest appropriate extension
+        //
+        panel.nameFieldStringValue = lump.name + ".lmp"
+        panel.beginSheetModal(for: mainWindow) { response in
+            if response == .OK {
+                // this is not an operation
+                guard let url = panel.url else {
+                    return
+                }
+                guard (try? lump.write(url: url)) != nil else {
+                    let alert = NSAlert()
+                    alert.alertStyle = .warning
+                    alert.messageText = "Couldn't export lump '\(lump.name)' to '\(url.path)'"
+                    alert.informativeText = "Path may be invalid or inaccessible. Check if you have write access to that location."
+                    alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
+                    return
+                }
             }
         }
     }
