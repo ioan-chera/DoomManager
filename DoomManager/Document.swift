@@ -203,15 +203,23 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
 
         // Actions run on selected table items
         let selectionActions = Set<Selector>([
+            #selector(Document.copy(_:)),
+            #selector(Document.cut(_:)),
             #selector(Document.delete(_:)),
             #selector(Document.exportLumpClicked(_:)),
             #selector(Document.moveLumpDownClicked(_:)),
             #selector(Document.moveLumpUpClicked(_:))
         ])
 
+        if menuItem.action == #selector(Document.paste(_:)) {
+            let pasteboard = NSPasteboard.general
+            return pasteboard.canReadObject(forClasses: [Lump.self], options: nil)
+        }
+
         if menuItem.action != nil && selectionActions.contains(menuItem.action!) {
             return !lumpList.selectedRowIndexes.isEmpty
         }
+
         return super.validateMenuItem(menuItem)
     }
 
@@ -301,7 +309,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
                     guard let url = panel.url else {
                         return
                     }
-                    let lumps = (self.wad.lumps as NSArray).objects(at: self.lumpList.selectedRowIndexes) as! [Lump]
+                    let lumps = arrayObjects(self.wad.lumps, indices: self.lumpList.selectedRowIndexes)
                     let filenames = lumps.map { $0.name + ".lmp" }
                     let overwritten = filenames.compactMap { filename -> String? in
                         let url = url.appendingPathComponent(filename)
@@ -355,5 +363,37 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
                 }
             }
         }
+    }
+
+    ///
+    /// Implement clipboard copy
+    ///
+    @IBAction func copy(_ sender: Any?) {
+        let lumps = arrayObjects(wad.lumps, indices: lumpList.selectedRowIndexes)
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.writeObjects(lumps)
+        reportStatus(text: "Copied \(countedWord(singular: "lump", plural: "lumps", count: lumps.count)) to clipboard")
+    }
+
+    ///
+    /// Implement clipboard paste
+    ///
+    @IBAction func paste(_ sender: Any?) {
+        let pasteboard = NSPasteboard.general
+        if pasteboard.canReadObject(forClasses: [Lump.self], options: nil) {
+            if let objectsToPaste = pasteboard.readObjects(forClasses: [Lump.self], options: nil) as? [Lump] {
+                // We have them. Add them where they should be
+                operations.add(lumps: objectsToPaste, afterIndex: lumpList.selectedRowIndexes.max())
+            }
+        }
+    }
+
+    ///
+    /// Implement clipboard cut
+    ///
+    @IBAction func cut(_ sender: Any?) {
+        copy(sender)
+        delete(sender)
     }
 }

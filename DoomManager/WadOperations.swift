@@ -116,6 +116,9 @@ class WadOperations {
         endMultiHighlight()
     }
 
+    ///
+    /// Moves one lump inside the wad
+    ///
     private func moveLump(index: Int, toIndex: Int) {
         if index == toIndex {
             return
@@ -180,6 +183,13 @@ class WadOperations {
             return
         }
 
+        add(lumps: lumps, afterIndex: afterIndex)
+    }
+
+    ///
+    /// Adds multiple lumps after an index
+    ///
+    func add(lumps: [Lump], afterIndex: Int?) {
         var index = (afterIndex ?? -1) + 1
 
         beginMultiHighlight()

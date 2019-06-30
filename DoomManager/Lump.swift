@@ -16,12 +16,13 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import AppKit
 import Foundation
 
 ///
 /// Wad lump. Contains the actual data and the name.
 ///
-class Lump
+class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
 {
     private var _nameBytes: [UInt8]  // byte array up to 8 values
     var data: [UInt8]
@@ -72,6 +73,7 @@ class Lump
     {
         self._nameBytes = []
         self.data = []
+        super.init()
         self.name = name
     }
 
@@ -79,12 +81,14 @@ class Lump
     {
         self._nameBytes = []
         self.data = data.asArray()
+        super.init()
         self.name = name
     }
 
     init(nameData: Data, data: Data) {
         self._nameBytes = []
         self.data = data.asArray()
+        super.init()
         self.nameBytes = nameData.asArray()
     }
 
@@ -104,5 +108,95 @@ class Lump
     func write(url: URL) throws {
         let data = Data(bytes: self.data, count: self.data.count)
         try data.write(to: url)
+    }
+
+    ///
+    /// Info for copying
+    ///
+    func writableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
+        return [.init("doom.classic.lump"), .string, .URL]
+    }
+
+    ///
+    /// Required properties for writing to clipboard
+    ///
+    func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {
+        if type.rawValue == "doom.classic.lump" {
+            return try? NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: false)
+        }
+        if type == .string {
+            return name
+        }
+        if type == .URL {
+            // TODO i9: put file into a temporary location and return its URL
+            return nil
+        }
+        return nil
+    }
+
+    ///
+    /// Info for pasting
+    ///
+    static func readableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
+        return [.init("doom.classic.lump"), .fileURL]
+    }
+
+    ///
+    /// Options for reading
+    ///
+    static func readingOptions(forType type: NSPasteboard.PasteboardType, pasteboard: NSPasteboard) -> NSPasteboard.ReadingOptions {
+        if type.rawValue == "doom.classic.lump" {
+            return .asKeyedArchive
+        } else if type == .fileURL {
+            return NSURL.readingOptions(forType: type, pasteboard: pasteboard)
+        }
+        return .init()
+    }
+
+    ///
+    /// Given properties, now what?
+    ///
+    required convenience init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
+        if type == .fileURL {
+            guard let nsurl = NSURL(pasteboardPropertyList: propertyList, ofType: type),
+                let absoluteString = nsurl.absoluteString,
+                let url = URL(string: absoluteString) else
+            {
+                return nil
+            }
+            self.init(url: url)
+        } else {
+            return nil
+        }
+    }
+
+    ///
+    /// NSCoding stuff
+    ///
+    func encode(with aCoder: NSCoder) {
+        let nameBytesData = NSData(bytes: _nameBytes, length: _nameBytes.count)
+        let dataData = NSData(bytes: data, length: data.count)
+        aCoder.encode(nameBytesData, forKey: "nameBytes")
+        aCoder.encode(dataData, forKey: "data")
+    }
+
+    ///
+    /// NSCoding stuff
+    ///
+    required init?(coder aDecoder: NSCoder) {
+        guard let nameBytesData = aDecoder.decodeObject(of: [NSData.self], forKey: "nameBytes") as? Data,
+            let dataData = aDecoder.decodeObject(of: [NSData.self], forKey: "data") as? Data else
+        {
+            return nil
+        }
+        _nameBytes = nameBytesData.asArray()
+        data = dataData.asArray()
+    }
+
+    ///
+    /// Required by the pasteboard. Means using "decodeObject" with class specified.
+    ///
+    static var supportsSecureCoding: Bool {
+        return true
     }
 }
