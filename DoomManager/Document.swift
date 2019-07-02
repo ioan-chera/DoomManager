@@ -21,6 +21,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     @IBOutlet var lumpCountStatus: NSTextField!
     @IBOutlet var lastActionStatus: NSTextField!
     @IBOutlet var mainWindow: NSWindow! // need this because "window" is ambiguous
+    @IBOutlet var lumpFilterBox: NSSearchField!
 
     override init() {
         operations = WadOperations(wad: wad)
@@ -41,6 +42,11 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
         super.windowControllerDidLoadNib(windowController)
         lumpListDelegate.set(wad: wad, operations: operations)
         wadLumpCountUpdated(wad.lumps.count)    // calling this is needed
+
+        if let cell = lumpFilterBox.cell as? NSSearchFieldCell {
+            cell.searchButtonCell?.image = NSImage(named: "line.horizontal.3.decrease.circle")
+            
+        }
     }
 
     override var windowNibName: NSNib.Name? {

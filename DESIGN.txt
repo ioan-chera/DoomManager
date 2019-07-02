@@ -1,0 +1,3 @@
+Use SF Symbols for common tools.
+
+Typical for normal-size search field and other text fields: small light. Scaled 36% for Retina @2x. Alpha has to be 75%.

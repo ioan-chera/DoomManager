@@ -12,6 +12,7 @@
 		4F1079A822C8D05E00725AB4 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1079A722C8D05E00725AB4 /* StringUtil.swift */; };
 		4F1079AA22C9209700725AB4 /* ArrayUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1079A922C9209700725AB4 /* ArrayUtil.swift */; };
 		4F1079AC22CAAA0700725AB4 /* CommonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1079AB22CAAA0600725AB4 /* CommonPaths.swift */; };
+		4F1079B122CBE3F200725AB4 /* line.horizontal.3.decrease.circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1079B022CBE3F100725AB4 /* line.horizontal.3.decrease.circle@2x.png */; };
 		4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10CB22BE767B005A605C /* AppDelegate.swift */; };
 		4F5E10D322BE767E005A605C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D222BE767E005A605C /* Assets.xcassets */; };
 		4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D422BE767E005A605C /* MainMenu.xib */; };
@@ -53,6 +54,7 @@
 		4F1079A722C8D05E00725AB4 /* StringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
 		4F1079A922C9209700725AB4 /* ArrayUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtil.swift; sourceTree = "<group>"; };
 		4F1079AB22CAAA0600725AB4 /* CommonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPaths.swift; sourceTree = "<group>"; };
+		4F1079B022CBE3F100725AB4 /* line.horizontal.3.decrease.circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "line.horizontal.3.decrease.circle@2x.png"; path = "res/line.horizontal.3.decrease.circle@2x.png"; sourceTree = "<group>"; };
 		4F5E10C822BE767B005A605C /* DoomManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoomManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E10CB22BE767B005A605C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F5E10D222BE767E005A605C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 			name = App;
 			sourceTree = "<group>";
 		};
+		4F1079AD22CBDF6F00725AB4 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				4F1079B022CBE3F100725AB4 /* line.horizontal.3.decrease.circle@2x.png */,
+			);
+			name = res;
+			sourceTree = "<group>";
+		};
 		4F5E10BF22BE767B005A605C = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +145,7 @@
 		4F5E10CA22BE767B005A605C /* DoomManager */ = {
 			isa = PBXGroup;
 			children = (
+				4F1079AD22CBDF6F00725AB4 /* res */,
 				4F1079A022C7B78E00725AB4 /* App */,
 				4F769D9622C76D0300E7E702 /* Document */,
 				4F769D8C22C76CCC00E7E702 /* Wad */,
@@ -305,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F1079B122CBE3F200725AB4 /* line.horizontal.3.decrease.circle@2x.png in Resources */,
 				4F769D9D22C76D3A00E7E702 /* Document.xib in Resources */,
 				4F5E10D322BE767E005A605C /* Assets.xcassets in Resources */,
 				4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */,
