@@ -36,14 +36,14 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="lqy-OF-L2f">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="392"/>
+                                        <rect key="frame" x="0.0" y="25" width="200" height="368"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" id="lev-by-d77">
-                                            <rect key="frame" x="1" y="0.0" width="198" height="391"/>
+                                            <rect key="frame" x="1" y="0.0" width="198" height="367"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="SUX-nW-d7g" viewBased="YES" id="X4p-Ap-n52">
-                                                    <rect key="frame" x="0.0" y="0.0" width="198" height="366"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="198" height="342"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -96,7 +96,7 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="Cdb-o5-wwQ">
-                                                                    <rect key="frame" x="106.5" y="1" width="89" height="17"/>
+                                                                    <rect key="frame" x="107" y="1" width="89" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="NMb-15-Fa4">
@@ -136,6 +136,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableHeaderView>
                                     </scrollView>
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="Yeh-rY-7tE">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Filter" usesSingleLineMode="YES" bezelStyle="round" id="hGq-c1-PKd">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                    </searchField>
                                 </subviews>
                             </customView>
                             <customView id="22c-i6-Qkq">
