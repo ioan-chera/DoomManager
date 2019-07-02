@@ -114,7 +114,7 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
     /// Info for copying
     ///
     func writableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
-        return [.init("doom.classic.lump"), .string, .URL]
+        return [.init("doom.classic.lump"), .string]
     }
 
     ///
@@ -126,10 +126,6 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
         }
         if type == .string {
             return name
-        }
-        if type == .URL {
-            // TODO i9: put file into a temporary location and return its URL
-            return nil
         }
         return nil
     }
@@ -158,13 +154,10 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
     ///
     required convenience init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
         if type == .fileURL {
-            guard let nsurl = NSURL(pasteboardPropertyList: propertyList, ofType: type),
-                let absoluteString = nsurl.absoluteString,
-                let url = URL(string: absoluteString) else
-            {
+            guard let nsurl = NSURL(pasteboardPropertyList: propertyList, ofType: type) else {
                 return nil
             }
-            self.init(url: url)
+            self.init(url: nsurl as URL)
         } else {
             return nil
         }

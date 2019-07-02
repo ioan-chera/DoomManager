@@ -11,6 +11,7 @@
 		4F1079A422C81D5E00725AB4 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1079A322C81D5E00725AB4 /* TableViewExtension.swift */; };
 		4F1079A822C8D05E00725AB4 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1079A722C8D05E00725AB4 /* StringUtil.swift */; };
 		4F1079AA22C9209700725AB4 /* ArrayUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1079A922C9209700725AB4 /* ArrayUtil.swift */; };
+		4F1079AC22CAAA0700725AB4 /* CommonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1079AB22CAAA0600725AB4 /* CommonPaths.swift */; };
 		4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E10CB22BE767B005A605C /* AppDelegate.swift */; };
 		4F5E10D322BE767E005A605C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D222BE767E005A605C /* Assets.xcassets */; };
 		4F5E10D622BE767E005A605C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E10D422BE767E005A605C /* MainMenu.xib */; };
@@ -51,6 +52,7 @@
 		4F1079A322C81D5E00725AB4 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		4F1079A722C8D05E00725AB4 /* StringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
 		4F1079A922C9209700725AB4 /* ArrayUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtil.swift; sourceTree = "<group>"; };
+		4F1079AB22CAAA0600725AB4 /* CommonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPaths.swift; sourceTree = "<group>"; };
 		4F5E10C822BE767B005A605C /* DoomManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoomManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E10CB22BE767B005A605C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F5E10D222BE767E005A605C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				4F1079A022C7B78E00725AB4 /* App */,
 				4F769D9622C76D0300E7E702 /* Document */,
 				4F769D8C22C76CCC00E7E702 /* Wad */,
+				4F1079AB22CAAA0600725AB4 /* CommonPaths.swift */,
 				4F94E72522BF6AFA008DB033 /* DataExtension.swift */,
 				4F1079A922C9209700725AB4 /* ArrayUtil.swift */,
 				4F94E72B22BF7E21008DB033 /* DataReader.swift */,
@@ -334,6 +337,7 @@
 				4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */,
 				4F1079A822C8D05E00725AB4 /* StringUtil.swift in Sources */,
 				4F769DA322C76D4500E7E702 /* LumpAnalysis.swift in Sources */,
+				4F1079AC22CAAA0700725AB4 /* CommonPaths.swift in Sources */,
 				4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */,
 				4F769DA222C76D4500E7E702 /* Lump.swift in Sources */,
 				4F769DA522C76D4500E7E702 /* Wad.swift in Sources */,

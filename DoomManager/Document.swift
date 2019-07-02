@@ -373,6 +373,17 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.writeObjects(lumps)
+
+        for lump in lumps {
+            let url = tempClipboardPathURL.appendingPathComponent(lump.name + ".lmp")
+            let item = LumpURLProvider.Item()
+            item.lump = lump
+            item.url = url
+            let provider = LumpURLProvider()
+            item.setDataProvider(provider, forTypes: [.fileURL])
+            pasteboard.writeObjects([item])
+        }
+
         reportStatus(text: "Copied \(countedWord(singular: "lump", plural: "lumps", count: lumps.count)) to clipboard")
     }
 
@@ -395,5 +406,46 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     @IBAction func cut(_ sender: Any?) {
         copy(sender)
         delete(sender)
+    }
+
+    ///
+    /// Necessary to provide URLs
+    ///
+    class LumpURLProvider: NSObject, NSPasteboardItemDataProvider {
+        private var urls = [URL]()
+
+        ///
+        /// The pasteboard item. Holds reference to lump
+        ///
+        class Item: NSPasteboardItem {
+            var url: URL!
+            var lump: Lump!
+        }
+        ///
+        /// The actual providing function
+        ///
+        func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: NSPasteboard.PasteboardType) {
+            // Retrieve the URL from the item
+
+            let lumpItem = item as! Item
+            item.setData(lumpItem.url.dataRepresentation, forType: .fileURL)
+
+            guard (try? lumpItem.lump.write(url: lumpItem.url)) != nil else {
+                Swift.print("Failed outputting to \(String(describing: lumpItem.url))")
+                return
+            }
+
+            urls.append(lumpItem.url)
+        }
+
+        ///
+        /// When ready to delete
+        ///
+        func pasteboardFinishedWithDataProvider(_ pasteboard: NSPasteboard) {
+            for url in urls {
+                try? FileManager.default.removeItem(at: url)
+            }
+            urls.removeAll()
+        }
     }
 }
