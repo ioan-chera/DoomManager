@@ -116,7 +116,7 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
     /// Info for copying
     ///
     func writableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
-        return [.init("doom.classic.lump"), .string]
+        return [.init(Lump.uti), .string]
     }
 
     ///

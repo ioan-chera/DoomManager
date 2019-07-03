@@ -385,7 +385,6 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
         let lumps = arrayObjects(wad.lumps, indices: lumpListDelegate.defiltered(indices: lumpList.selectedRowIndexes))
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
-        pasteboard.writeObjects(lumps)
 
         for lump in lumps {
             let url = tempClipboardPathURL.appendingPathComponent(lump.name + ".lmp")
@@ -393,7 +392,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
             item.lump = lump
             item.url = url
             let provider = LumpURLProvider()
-            item.setDataProvider(provider, forTypes: [.fileURL])
+            item.setDataProvider(provider, forTypes: lump.writableTypes(for: pasteboard) + [.fileURL])
             pasteboard.writeObjects([item])
         }
 
@@ -446,6 +445,19 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
             // Retrieve the URL from the item
 
             let lumpItem = item as! Item
+
+            if type != .fileURL {
+                let clipData = lumpItem.lump.pasteboardPropertyList(forType: type)
+                if let data = clipData as? Data {
+                    item.setData(data, forType: type)
+                } else if let string = clipData as? String {
+                    item.setString(string, forType: type)
+                } else if let plist = clipData {
+                    item.setPropertyList(plist, forType: type)
+                }
+                return
+            }
+
             item.setData(lumpItem.url.dataRepresentation, forType: .fileURL)
 
             guard (try? lumpItem.lump.write(url: lumpItem.url)) != nil else {

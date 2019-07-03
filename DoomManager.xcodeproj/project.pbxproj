@@ -29,6 +29,7 @@
 		4F94E72822BF6B28008DB033 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72722BF6B28008DB033 /* Errors.swift */; };
 		4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72B22BF7E21008DB033 /* DataReader.swift */; };
 		4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72D22BF888A008DB033 /* DoomGraphics.swift */; };
+		4FCA8B0922CD3A2900D72A95 /* LumpFilePromiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		4F94E72722BF6B28008DB033 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		4F94E72B22BF7E21008DB033 /* DataReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReader.swift; sourceTree = "<group>"; };
 		4F94E72D22BF888A008DB033 /* DoomGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomGraphics.swift; sourceTree = "<group>"; };
+		4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumpFilePromiser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			children = (
 				4F769D9E22C76D4500E7E702 /* Lump.swift */,
 				4F769D9F22C76D4500E7E702 /* LumpAnalysis.swift */,
+				4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */,
 				4F769DA122C76D4500E7E702 /* Wad.swift */,
 				4F769DA022C76D4500E7E702 /* WadOperations.swift */,
 			);
@@ -353,6 +356,7 @@
 				4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */,
 				4F769DA222C76D4500E7E702 /* Lump.swift in Sources */,
 				4F769DA522C76D4500E7E702 /* Wad.swift in Sources */,
+				4FCA8B0922CD3A2900D72A95 /* LumpFilePromiser.swift in Sources */,
 				4F769D9922C76D3000E7E702 /* Document.swift in Sources */,
 				4F769DA422C76D4500E7E702 /* WadOperations.swift in Sources */,
 				4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */,
