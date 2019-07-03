@@ -109,6 +109,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     /// Called when the wad operation demands an update
     ///
     func wadOperationsUpdateView() {
+        lumpListDelegate.updateFilter()
         lumpList.reloadData()
     }
 
@@ -122,7 +123,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
         if multiHighlightIndices != nil {
             multiHighlightIndices?.insert(index)
         } else {    // otherwise it's just a unit
-            lumpList.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: true)
+            lumpList.selectRowIndexes(IndexSet(integer: lumpListDelegate.filtered(index: index)), byExtendingSelection: true)
             wadOperationsBringAttention(index: index)
         }
     }
@@ -181,7 +182,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     func wadOperationsEndMultiAction() {
         if let indices = multiHighlightIndices {
             if multiHighlightRefs == 1 {
-                lumpList.selectRowIndexes(indices, byExtendingSelection: false)
+                lumpList.selectRowIndexes(lumpListDelegate.filtered(indices: indices), byExtendingSelection: false)
                 multiHighlightIndices = nil
 
                 if !indices.isEmpty {
@@ -199,7 +200,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     /// Animates to a row (used when selecting isn't appropriate
     ///
     func wadOperationsBringAttention(index: Int) {
-        lumpList.animateToRow(index: index)
+        lumpList.animateToRow(index: lumpListDelegate.filtered(index: index))
     }
 
     ///
@@ -233,21 +234,23 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     /// Delete responder
     ///
     @objc func delete(_ sender: Any?) {
-        operations.deleteLumps(indices: lumpList.selectedRowIndexes)
+        operations.deleteLumps(indices: lumpListDelegate.defiltered(indices: lumpList.selectedRowIndexes))
     }
 
     ///
     /// Move up clicked
     ///
     @IBAction func moveLumpUpClicked(_ sender: Any?) {
-        operations.moveLumpsUp(indices: lumpList.selectedRowIndexes)
+        // TODO i8: can be filtered. Also move smartly
+        operations.moveLumpsUp(indices: lumpListDelegate.defiltered(indices: lumpList.selectedRowIndexes))
     }
 
     ///
     /// Move down clicked
     ///
     @IBAction func moveLumpDownClicked(_ sender: Any?) {
-        operations.moveLumpsDown(indices: lumpList.selectedRowIndexes)
+        // TODO i8: can be filtered
+        operations.moveLumpsDown(indices: lumpListDelegate.defiltered(indices: lumpList.selectedRowIndexes))
     }
 
     ///
@@ -262,7 +265,11 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
         panel.prompt = "Import"
         panel.beginSheetModal(for: mainWindow) { response in
             if response == .OK {
-                self.operations.importLumps(urls: panel.urls, afterIndex: self.lumpList.selectedRowIndexes.max())
+                if let max = self.lumpList.selectedRowIndexes.max() {
+                    self.operations.importLumps(urls: panel.urls, afterIndex: self.lumpListDelegate.defiltered(index: max))
+                } else {
+                    self.operations.importLumps(urls: panel.urls, afterIndex: nil)
+                }
             }
         }
     }
@@ -277,7 +284,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
             panel.title = "Export Lump"
             panel.prompt = "Export"
             panel.canCreateDirectories = true
-            let lump = wad.lumps[lumpList.selectedRow]
+            let lump = wad.lumps[lumpListDelegate.defiltered(index: lumpList.selectedRow)]
             //
             // TODO i6: guess format and suggest appropriate extension
             //
@@ -315,7 +322,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
                     guard let url = panel.url else {
                         return
                     }
-                    let lumps = arrayObjects(self.wad.lumps, indices: self.lumpList.selectedRowIndexes)
+                    let lumps = arrayObjects(self.wad.lumps, indices: self.lumpListDelegate.defiltered(indices: self.lumpList.selectedRowIndexes))
                     let filenames = lumps.map { $0.name + ".lmp" }
                     let overwritten = filenames.compactMap { filename -> String? in
                         let url = url.appendingPathComponent(filename)
@@ -375,7 +382,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     /// Implement clipboard copy
     ///
     @IBAction func copy(_ sender: Any?) {
-        let lumps = arrayObjects(wad.lumps, indices: lumpList.selectedRowIndexes)
+        let lumps = arrayObjects(wad.lumps, indices: lumpListDelegate.defiltered(indices: lumpList.selectedRowIndexes))
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.writeObjects(lumps)
@@ -397,11 +404,16 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     /// Implement clipboard paste
     ///
     @IBAction func paste(_ sender: Any?) {
+        // TODO i8: can be filtered
         let pasteboard = NSPasteboard.general
         if pasteboard.canReadObject(forClasses: [Lump.self], options: nil) {
             if let objectsToPaste = pasteboard.readObjects(forClasses: [Lump.self], options: nil) as? [Lump] {
                 // We have them. Add them where they should be
-                operations.add(lumps: objectsToPaste, afterIndex: lumpList.selectedRowIndexes.max())
+                if let max = lumpList.selectedRowIndexes.max() {
+                    operations.add(lumps: objectsToPaste, afterIndex: lumpListDelegate.defiltered(index: max))
+                } else {
+                    operations.add(lumps: objectsToPaste, afterIndex: nil)
+                }
             }
         }
     }
@@ -453,5 +465,13 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
             }
             urls.removeAll()
         }
+    }
+
+    ///
+    /// User is searching
+    ///
+    @IBAction func searchBoxUpdated(_ sender: Any?) {
+        lumpListDelegate.filterString = lumpFilterBox.stringValue
+        lumpList.reloadData()
     }
 }

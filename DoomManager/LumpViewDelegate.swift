@@ -19,19 +19,72 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
 
     @IBOutlet var selectedCountStatus: NSTextField!
 
+    private var filteredIndexMap = [Int: Int]()  // Maps full wad lump index to the filtered index
+    private var filteredLumps = [(offset: Int, element: Lump)]() {
+        didSet {
+            filteredIndexMap = [:]
+            filteredLumps.forEach { filteredIndexMap[$0.offset] = filteredIndexMap.count }
+        }
+    }
+    var filterString = "" {
+        didSet {
+            updateFilter()
+        }
+    }
+
     ///
     /// Grouped setter
     ///
     func set(wad: Wad, operations: WadOperations) {
         self.wad = wad
         wadOperations = operations
+        updateFilter()
+    }
+
+    ///
+    /// Updates the filter according to string. Needs to be called after all wad changes (done by
+    /// the WadOperations object).
+    ///
+    func updateFilter() {
+        guard let wad = wad else {
+            return
+        }
+        filteredIndexMap = [:]
+        if filterString.isEmpty {
+            filteredLumps = wad.lumps.enumerated().filter { element in true }
+        } else {
+            // We have a string
+            // TODO: check locale, such as Turkish i/I
+            let filter = filterString.uppercased()
+            filteredLumps = wad.lumps.enumerated().filter { $0.element.name.contains(filter) }
+        }
+    }
+
+    ///
+    /// Converts wadwide indices to filtered (displayed) ones
+    ///
+    func filtered(indices: IndexSet) -> IndexSet {
+        return IndexSet(indices.map { filteredIndexMap[$0]! })
+    }
+    func filtered(index: Int) -> Int {
+        return filteredIndexMap[index]!
+    }
+
+    ///
+    /// Converts filter index to wadwide index
+    ///
+    func defiltered(indices: IndexSet) -> IndexSet {
+        return IndexSet(indices.map { filteredLumps[$0].offset })
+    }
+    func defiltered(index: Int) -> Int {
+        return filteredLumps[index].offset
     }
 
     ///
     /// Required number of rows
     ///
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return wad?.lumps.count ?? 0
+        return filteredLumps.count
     }
 
     ///
@@ -39,11 +92,11 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
     ///
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if tableColumn?.identifier.rawValue == "lump" {
-            let lumpName = wad?.lumps[row].name ?? ""
+            let lumpName = filteredLumps[row].element.name
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("lump"), owner: nil) as? NSTableCellView {
                 cell.textField?.stringValue = lumpName
 
-                cell.textField?.tag = row   // Need the lump index
+                cell.textField?.tag = filteredLumps[row].offset // Need the lump index
                 // Can't set these from Interface Builder, set them here
                 cell.textField?.target = self
                 cell.textField?.action = #selector(LumpViewDelegate.lumpNameEdited(_:))

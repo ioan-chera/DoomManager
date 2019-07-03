@@ -27,6 +27,8 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
     private var _nameBytes: [UInt8]  // byte array up to 8 values
     var data: [UInt8]
 
+    static let uti = "doom.classic.lump"
+
     var nameBytes: [UInt8] {
         get {
             return self._nameBytes
@@ -121,7 +123,7 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
     /// Required properties for writing to clipboard
     ///
     func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {
-        if type.rawValue == "doom.classic.lump" {
+        if type.rawValue == Lump.uti {
             return try? NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: false)
         }
         if type == .string {
@@ -134,14 +136,14 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
     /// Info for pasting
     ///
     static func readableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
-        return [.init("doom.classic.lump"), .fileURL]
+        return [.init(Lump.uti), .fileURL]
     }
 
     ///
     /// Options for reading
     ///
     static func readingOptions(forType type: NSPasteboard.PasteboardType, pasteboard: NSPasteboard) -> NSPasteboard.ReadingOptions {
-        if type.rawValue == "doom.classic.lump" {
+        if type.rawValue == Lump.uti {
             return .asKeyedArchive
         } else if type == .fileURL {
             return NSURL.readingOptions(forType: type, pasteboard: pasteboard)
