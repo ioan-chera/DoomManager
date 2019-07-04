@@ -30,6 +30,7 @@
 		4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72B22BF7E21008DB033 /* DataReader.swift */; };
 		4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72D22BF888A008DB033 /* DoomGraphics.swift */; };
 		4FCA8B0922CD3A2900D72A95 /* LumpFilePromiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */; };
+		4FCA8B0C22CDD63100D72A95 /* PasteboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		4F94E72B22BF7E21008DB033 /* DataReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReader.swift; sourceTree = "<group>"; };
 		4F94E72D22BF888A008DB033 /* DoomGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomGraphics.swift; sourceTree = "<group>"; };
 		4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumpFilePromiser.swift; sourceTree = "<group>"; };
+		4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,19 +152,13 @@
 				4F1079AD22CBDF6F00725AB4 /* res */,
 				4F1079A022C7B78E00725AB4 /* App */,
 				4F769D9622C76D0300E7E702 /* Document */,
+				4FCA8B0A22CDD5E900D72A95 /* Utilities */,
 				4F769D8C22C76CCC00E7E702 /* Wad */,
 				4F1079AB22CAAA0600725AB4 /* CommonPaths.swift */,
-				4F94E72522BF6AFA008DB033 /* DataExtension.swift */,
-				4F1079A922C9209700725AB4 /* ArrayUtil.swift */,
-				4F94E72B22BF7E21008DB033 /* DataReader.swift */,
 				4F5E10D222BE767E005A605C /* Assets.xcassets */,
 				4F94E72D22BF888A008DB033 /* DoomGraphics.swift */,
-				4F94E72722BF6B28008DB033 /* Errors.swift */,
-				4F1079A122C7CFC300725AB4 /* IndexSetUtil.swift */,
 				4F5E10D722BE767E005A605C /* Info.plist */,
 				4F5E10D822BE767E005A605C /* DoomManager.entitlements */,
-				4F1079A722C8D05E00725AB4 /* StringUtil.swift */,
-				4F1079A322C81D5E00725AB4 /* TableViewExtension.swift */,
 			);
 			path = DoomManager;
 			sourceTree = SOURCE_ROOT;
@@ -205,6 +201,21 @@
 				4F769D9822C76D3000E7E702 /* LumpViewDelegate.swift */,
 			);
 			name = Document;
+			sourceTree = "<group>";
+		};
+		4FCA8B0A22CDD5E900D72A95 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4F1079A922C9209700725AB4 /* ArrayUtil.swift */,
+				4F94E72522BF6AFA008DB033 /* DataExtension.swift */,
+				4F94E72B22BF7E21008DB033 /* DataReader.swift */,
+				4F94E72722BF6B28008DB033 /* Errors.swift */,
+				4F1079A122C7CFC300725AB4 /* IndexSetUtil.swift */,
+				4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */,
+				4F1079A722C8D05E00725AB4 /* StringUtil.swift */,
+				4F1079A322C81D5E00725AB4 /* TableViewExtension.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +360,7 @@
 			files = (
 				4F769D9A22C76D3000E7E702 /* LumpViewDelegate.swift in Sources */,
 				4F1079AA22C9209700725AB4 /* ArrayUtil.swift in Sources */,
+				4FCA8B0C22CDD63100D72A95 /* PasteboardUtil.swift in Sources */,
 				4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */,
 				4F1079A822C8D05E00725AB4 /* StringUtil.swift in Sources */,
 				4F769DA322C76D4500E7E702 /* LumpAnalysis.swift in Sources */,

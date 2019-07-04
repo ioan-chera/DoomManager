@@ -448,13 +448,7 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
 
             if type != .fileURL {
                 let clipData = lumpItem.lump.pasteboardPropertyList(forType: type)
-                if let data = clipData as? Data {
-                    item.setData(data, forType: type)
-                } else if let string = clipData as? String {
-                    item.setString(string, forType: type)
-                } else if let plist = clipData {
-                    item.setPropertyList(plist, forType: type)
-                }
+                item.set(content: clipData, forType: type)
                 return
             }
 
