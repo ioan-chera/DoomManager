@@ -31,6 +31,7 @@
 		4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E72D22BF888A008DB033 /* DoomGraphics.swift */; };
 		4FCA8B0922CD3A2900D72A95 /* LumpFilePromiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */; };
 		4FCA8B0C22CDD63100D72A95 /* PasteboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */; };
+		4FCA8B0E22CE999400D72A95 /* URLUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0D22CE999400D72A95 /* URLUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		4F94E72D22BF888A008DB033 /* DoomGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomGraphics.swift; sourceTree = "<group>"; };
 		4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumpFilePromiser.swift; sourceTree = "<group>"; };
 		4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardUtil.swift; sourceTree = "<group>"; };
+		4FCA8B0D22CE999400D72A95 /* URLUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 				4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */,
 				4F1079A722C8D05E00725AB4 /* StringUtil.swift */,
 				4F1079A322C81D5E00725AB4 /* TableViewExtension.swift */,
+				4FCA8B0D22CE999400D72A95 /* URLUtil.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				4F5E10CC22BE767B005A605C /* AppDelegate.swift in Sources */,
 				4F94E72822BF6B28008DB033 /* Errors.swift in Sources */,
 				4F94E72622BF6AFA008DB033 /* DataExtension.swift in Sources */,
+				4FCA8B0E22CE999400D72A95 /* URLUtil.swift in Sources */,
 				4F1079A222C7CFC300725AB4 /* IndexSetUtil.swift in Sources */,
 				4F1079A422C81D5E00725AB4 /* TableViewExtension.swift in Sources */,
 			);

@@ -325,8 +325,17 @@ class Document: NSDocument, WadOperationsDelegate {
                     ///
                     func doExport() {
                         var failures = [String]()
+                        var writtenFromWad = Set<URL>()
                         for (lump, filename) in zip(lumps, filenames) {
-                            let lumpURL = url.appendingPathComponent(filename)
+                            var lumpURL = url.appendingPathComponent(filename)
+                            if writtenFromWad.contains(lumpURL) {
+                                // If this is the second lump of the same name, we have no choice
+                                // but to auto-rename it, otherwise it becomes impossible to export
+                                // like-named lumps together
+                                lumpURL = lumpURL.numberRenamed()
+                            } else {
+                                writtenFromWad.insert(lumpURL)
+                            }
                             if (try? lump.write(url: lumpURL)) == nil {
                                 failures.append(lump.name)
                             }
