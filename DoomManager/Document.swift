@@ -386,8 +386,17 @@ class Document: NSDocument, WadOperationsDelegate {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
 
+        var repeats = [URL: Int]()  // in case of repeats, perform incremention. Do not rely on OS
+                                    // to luckily do this with promised files
+
         for lump in lumps {
-            let url = tempClipboardPathURL.appendingPathComponent(lump.name + ".lmp")
+            var url = tempClipboardPathURL.appendingPathComponent(lump.name + ".lmp")
+            if let numRepeats = repeats[url] {
+                repeats[url] = numRepeats + 1
+                url = tempClipboardPathURL.appendingPathComponent("\(lump.name) \(numRepeats).lmp")
+            } else {
+                repeats[url] = 1
+            }
             let item = LumpURLProvider.Item()
             item.lump = lump
             item.url = url
