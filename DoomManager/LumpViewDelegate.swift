@@ -54,9 +54,9 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
             filteredLumps = wad.lumps.enumerated().filter { element in true }
         } else {
             // We have a string
-            // TODO: check locale, such as Turkish i/I
-            let filter = filterString.uppercased()
-            filteredLumps = wad.lumps.enumerated().filter { $0.element.name.contains(filter) }
+            let fold: (String) -> String = { $0.folding(options: .diacriticInsensitive, locale: .current) }
+            let filter = fold(filterString.uppercased())
+            filteredLumps = wad.lumps.enumerated().filter { fold($0.element.name).contains(filter) }
         }
     }
 
