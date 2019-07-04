@@ -136,8 +136,7 @@ class WadOperations {
     ///
     /// Move lumps up
     ///
-    func moveLumpsUp(indices: IndexSet) {
-        let newIndices = indices.decremented(minimum: 0)
+    func moveLumpsUp(indices: IndexSet, to newIndices: IndexSet) {
         if newIndices == indices {
             return
         }
@@ -155,8 +154,7 @@ class WadOperations {
     ///
     /// Move them now
     ///
-    func moveLumpsDown(indices: IndexSet) {
-        let newIndices = indices.incremented(maximum: wad.lumps.count - 1)
+    func moveLumpsDown(indices: IndexSet, to newIndices: IndexSet) {
         if newIndices == indices {
             return
         }

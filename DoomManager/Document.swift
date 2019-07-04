@@ -230,16 +230,18 @@ class Document: NSDocument, WadOperationsDelegate {
     /// Move up clicked
     ///
     @IBAction func moveLumpUpClicked(_ sender: Any?) {
-        // TODO i8: can be filtered. Also move smartly
-        operations.moveLumpsUp(indices: lumpListDelegate.defiltered(indices: lumpList.selectedRowIndexes))
+        let def = lumpListDelegate.defiltered(indices:)
+        let aboveIndices = lumpList.selectedRowIndexes.decremented(minimum: 0)
+        operations.moveLumpsUp(indices: def(lumpList.selectedRowIndexes), to: def(aboveIndices))
     }
 
     ///
     /// Move down clicked
     ///
     @IBAction func moveLumpDownClicked(_ sender: Any?) {
-        // TODO i8: can be filtered
-        operations.moveLumpsDown(indices: lumpListDelegate.defiltered(indices: lumpList.selectedRowIndexes))
+        let def = lumpListDelegate.defiltered(indices:)
+        let belowIndices = lumpList.selectedRowIndexes.incremented(maximum: lumpList.numberOfRows - 1)
+        operations.moveLumpsDown(indices: def(lumpList.selectedRowIndexes), to: def(belowIndices))
     }
 
     ///
