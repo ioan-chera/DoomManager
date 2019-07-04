@@ -11,7 +11,7 @@ import Cocoa
 ///
 /// The document
 ///
-class Document: NSDocument, WadDelegate, WadOperationsDelegate {
+class Document: NSDocument, WadOperationsDelegate {
 
     private let wad = Wad()
     private let operations: WadOperations
@@ -28,7 +28,6 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
         super.init()
         // Add your subclass-specific initialization here.
         operations.delegate = self
-        wad.delegate = self
     }
 
     ///
@@ -41,11 +40,10 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
         super.windowControllerDidLoadNib(windowController)
         lumpListDelegate.set(wad: wad, operations: operations)
-        wadLumpCountUpdated(wad.lumps.count)    // calling this is needed
+        wadOperationsUpdateView()
 
         if let cell = lumpFilterBox.cell as? NSSearchFieldCell {
             cell.searchButtonCell?.image = NSImage(named: "line.horizontal.3.decrease.circle")
-            
         }
     }
 
@@ -83,20 +81,6 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     }
 
     ///
-    /// Delegate asked lump count update
-    ///
-    func wadLumpCountUpdated(_ count: Int) {
-        if lumpCountStatus != nil {
-            lumpCountStatus.stringValue = countedWord(singular: "lump", plural: "lumps", count: count)
-            
-            // Most likely selection changed, so update that too
-            var notification = Notification(name: NSTableView.selectionDidChangeNotification)
-            notification.object = lumpList
-            lumpListDelegate.tableViewSelectionDidChange(notification)
-        }
-    }
-
-    ///
     /// Delegate asked to send an undoer
     ///
     func wadOperationsUndo(closure: @escaping () -> Void) {
@@ -111,6 +95,11 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     func wadOperationsUpdateView() {
         lumpListDelegate.updateFilter()
         lumpList.reloadData()
+        lumpCountStatus.stringValue = countedWord(singular: "lump", plural: "lumps", count: wad.lumps.count)
+        // Most likely selection changed, so update that too
+        var notification = Notification(name: NSTableView.selectionDidChangeNotification)
+        notification.object = lumpList
+        lumpListDelegate.tableViewSelectionDidChange(notification)
     }
 
     ///
@@ -476,8 +465,26 @@ class Document: NSDocument, WadDelegate, WadOperationsDelegate {
     ///
     /// User is searching
     ///
+    var previousSearchString = ""
     @IBAction func searchBoxUpdated(_ sender: Any?) {
-        lumpListDelegate.filterString = lumpFilterBox.stringValue
-        lumpList.reloadData()
+        let currentString = lumpFilterBox.stringValue
+        let realRow: Int?
+        // TODO: preserve highlighting ALSO when visiting superior one
+        if previousSearchString.localizedCaseInsensitiveContains(currentString) || currentString.isEmpty {
+            // We have a search situation
+            let row = lumpList.selectedRow
+            realRow = row != -1 ? lumpListDelegate.defiltered(index: row) : nil
+        } else {
+            realRow = nil
+        }
+
+        lumpListDelegate.filterString = currentString
+        wadOperationsUpdateView()
+
+        if let realRow = realRow {
+            wadOperationsHighlight(index: realRow)
+        }
+
+        previousSearchString = currentString
     }
 }
