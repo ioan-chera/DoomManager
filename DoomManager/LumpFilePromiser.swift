@@ -65,7 +65,6 @@ class LumpFilePromiserDelegate: NSObject, NSFilePromiseProviderDelegate {
     ///
     func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
         let result = (filePromiseProvider as! LumpFilePromiser).lump.name + ".lmp"
-        print("Michael type: \(fileType) result: \(result)")
         return result
     }
 
@@ -73,7 +72,6 @@ class LumpFilePromiserDelegate: NSObject, NSFilePromiseProviderDelegate {
     /// Do the actual writing
     ///
     func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL, completionHandler: @escaping (Error?) -> Void) {
-        print("Jackson")
         let promiser = filePromiseProvider as! LumpFilePromiser
         do {
             try promiser.lump.write(url: url)
