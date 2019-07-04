@@ -429,8 +429,6 @@ class Document: NSDocument, WadOperationsDelegate {
     /// Necessary to provide URLs
     ///
     class LumpURLProvider: NSObject, NSPasteboardItemDataProvider {
-        private var urls = [URL]()
-
         ///
         /// The pasteboard item. Holds reference to lump
         ///
@@ -458,18 +456,18 @@ class Document: NSDocument, WadOperationsDelegate {
                 Swift.print("Failed outputting to \(String(describing: lumpItem.url))")
                 return
             }
-
-            urls.append(lumpItem.url)
         }
 
         ///
-        /// When ready to delete
+        /// When ready to delete, delete all junk from path, to cleanup
         ///
         func pasteboardFinishedWithDataProvider(_ pasteboard: NSPasteboard) {
-            for url in urls {
+            guard let junk = try? FileManager.default.contentsOfDirectory(atPath: tempClipboardPathURL.path).map({ tempClipboardPathURL.appendingPathComponent($0) }) else {
+                return
+            }
+            for url in junk {
                 try? FileManager.default.removeItem(at: url)
             }
-            urls.removeAll()
         }
     }
 

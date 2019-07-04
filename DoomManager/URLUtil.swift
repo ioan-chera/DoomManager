@@ -18,7 +18,7 @@ extension URL {
         let title = deletingPathExtension().lastPathComponent
         var modified = self
         while FileManager.default.fileExists(atPath: modified.path) && suffix < 1000 {
-            modified = dirname.appendingPathComponent("\(title)-\(suffix)").appendingPathExtension(pathExtension)
+            modified = dirname.appendingPathComponent("\(title) \(suffix)").appendingPathExtension(pathExtension)
             suffix += 1
         }
         return modified

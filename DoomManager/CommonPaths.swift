@@ -8,4 +8,11 @@
 
 import Foundation
 
-let tempClipboardPathURL = FileManager.default.temporaryDirectory
+let tempClipboardPathURL = FileManager.default.temporaryDirectory.appendingPathComponent("pboard")
+
+///
+/// To be called at startup
+///
+func ensureDirs() throws {
+    try FileManager.default.createDirectory(at: tempClipboardPathURL, withIntermediateDirectories: true, attributes: nil)
+}
