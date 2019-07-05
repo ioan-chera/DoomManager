@@ -97,10 +97,8 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
     ///
     /// Convenience from URL
     ///
-    convenience init?(url: URL) {
-        guard let data = try? Data(contentsOf: url) else {
-            return nil
-        }
+    convenience init(url: URL) throws {
+        let data = try Data(contentsOf: url)
         self.init(name: url.deletingPathExtension().lastPathComponent, data: data)
     }
 
@@ -159,7 +157,11 @@ class Lump: NSObject, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading
             guard let nsurl = NSURL(pasteboardPropertyList: propertyList, ofType: type) else {
                 return nil
             }
-            self.init(url: nsurl as URL)
+            do {
+                try self.init(url: nsurl as URL)
+            } catch {
+                return nil
+            }
         } else {
             return nil
         }

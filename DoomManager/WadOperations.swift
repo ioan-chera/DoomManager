@@ -175,7 +175,7 @@ class WadOperations {
     func importLumps(urls: [URL], afterIndex: Int?) {
 
         // Try to validate ahead of time
-        let lumps = urls.compactMap { Lump(url: $0) }
+        let lumps = urls.compactMap { try? Lump(url: $0) }
         // All failed? Abort. This is to prevent any ineffectual "dirtyness" states.
         if lumps.isEmpty {
             return

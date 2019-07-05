@@ -286,15 +286,19 @@ class Document: NSDocument, WadOperationsDelegate {
                     guard let url = panel.url else {
                         return
                     }
-                    guard (try? lump.write(url: url)) != nil else {
+
+                    do {
+                        try lump.write(url: url)
+                    } catch let error {
                         let alert = NSAlert()
                         alert.alertStyle = .warning
                         alert.messageText = "Couldn't export lump '\(lump.name)' to '\(url.path)'"
-                        alert.informativeText = "Path may be invalid or inaccessible. Check if you have write access to that location."
+                        alert.informativeText = error.localizedDescription
                         alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
-                        self.reportStatus(text: "Failed exporting 1 lump")
+                        self.reportStatus(text: "Failed exporting 1 lump. \(error.localizedDescription)")
                         return
                     }
+
                     self.reportStatus(text: "Exported 1 lump")
                 }
             }
@@ -325,6 +329,7 @@ class Document: NSDocument, WadOperationsDelegate {
                     ///
                     func doExport() {
                         var failures = [String]()
+                        var failureMessage: String? = nil
                         var writtenFromWad = Set<URL>()
                         for (lump, filename) in zip(lumps, filenames) {
                             var lumpURL = url.appendingPathComponent(filename)
@@ -336,8 +341,13 @@ class Document: NSDocument, WadOperationsDelegate {
                             } else {
                                 writtenFromWad.insert(lumpURL)
                             }
-                            if (try? lump.write(url: lumpURL)) == nil {
+                            do {
+                                try lump.write(url: lumpURL)
+                            } catch let error {
                                 failures.append(lump.name)
+                                if failureMessage == nil {
+                                    failureMessage = error.localizedDescription
+                                }
                             }
                         }
 
@@ -345,12 +355,12 @@ class Document: NSDocument, WadOperationsDelegate {
                             let alert = NSAlert()
                             alert.alertStyle = .warning
                             alert.messageText = "Failed exporting the following " + countedWord(singular: "lump", plural: "lumps", count: failures.count) + " to '\(url.path)'"
-                            alert.informativeText = stringEnumeration(array: failures, maxCount: 20, completionPunctuation: ".") + "\n\nCheck if you have write access to that location."
+                            alert.informativeText = stringEnumeration(array: failures, maxCount: 20, completionPunctuation: ".") + "\n\n" + failureMessage!
                             alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
 
                             let lumpDisplay = countedWord(singular: "lump", plural: "lumps", count: lumps.count - failures.count)
                             let failedDisplay = countedWord(singular: "lump", plural: "lumps", count: failures.count)
-                            self.reportStatus(text: "Exported \(lumpDisplay), failed \(failedDisplay)")
+                            self.reportStatus(text: "Exported \(lumpDisplay), failed \(failedDisplay). \(failureMessage!)")
                         } else {
                             self.reportStatus(text: "Exported \(countedWord(singular: "lump", plural: "lumps", count: lumps.count))")
                         }
