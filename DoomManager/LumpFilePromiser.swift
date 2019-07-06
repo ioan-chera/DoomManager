@@ -74,7 +74,7 @@ class LumpFilePromiserDelegate: NSObject, NSFilePromiseProviderDelegate {
     func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL, completionHandler: @escaping (Error?) -> Void) {
         let promiser = filePromiseProvider as! LumpFilePromiser
         do {
-            try promiser.lump.write(url: url)
+            try promiser.lump.write(url: url.sanitizedLump())
         } catch let error {
             completionHandler(error)
         }

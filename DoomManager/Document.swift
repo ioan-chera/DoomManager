@@ -279,7 +279,7 @@ class Document: NSDocument, WadOperationsDelegate {
             //
             // TODO i6: guess format and suggest appropriate extension
             //
-            panel.nameFieldStringValue = lump.name + ".lmp"
+            panel.nameFieldStringValue = lump.name.sanitizedLumpFile() + ".lmp"
             panel.beginSheetModal(for: mainWindow) { response in
                 if response == .OK {
                     // this is not an operation
@@ -318,7 +318,7 @@ class Document: NSDocument, WadOperationsDelegate {
                         return
                     }
                     let lumps = arrayObjects(self.wad.lumps, indices: self.lumpListDelegate.defiltered(indices: self.lumpList.selectedRowIndexes))
-                    let filenames = lumps.map { $0.name + ".lmp" }
+                    let filenames = lumps.map { $0.name.sanitizedLumpFile() + ".lmp" }
                     let overwritten = filenames.compactMap { filename -> String? in
                         let url = url.appendingPathComponent(filename)
                         return FileManager.default.fileExists(atPath: url.path) ? filename : nil
@@ -400,10 +400,11 @@ class Document: NSDocument, WadOperationsDelegate {
                                     // to luckily do this with promised files
 
         for lump in lumps {
-            var url = tempClipboardPathURL.appendingPathComponent(lump.name + ".lmp")
+            let saneName = lump.name.sanitizedLumpFile()
+            var url = tempClipboardPathURL.appendingPathComponent(saneName + ".lmp")
             if let numRepeats = repeats[url] {
                 repeats[url] = numRepeats + 1
-                url = tempClipboardPathURL.appendingPathComponent("\(lump.name) \(numRepeats).lmp")
+                url = tempClipboardPathURL.appendingPathComponent("\(saneName) \(numRepeats).lmp")
             } else {
                 repeats[url] = 1
             }

@@ -33,3 +33,26 @@ func countedWord(singular: String, plural: String, count: Int) -> String {
     let countText = String(count)
     return count == 1 ? "1 " + singular : countText + " " + plural
 }
+
+///
+/// Replaces all occurences of some characters from set
+///
+extension String {
+    ///
+    /// Enumerating all characters from a set, replaces them with string
+    ///
+    func replacingAllCharacters(fromSet set: String, with string: String) -> String {
+        var result = self
+        for character in set {
+            result = result.replacingOccurrences(of: String(character), with: string)
+        }
+        return result
+    }
+
+    ///
+    /// Sanitizes for lump saving
+    ///
+    func sanitizedLumpFile() -> String {
+        return replacingOccurrences(of: "\\", with: "^").replacingOccurrences(of: "/", with: ":")
+    }
+}

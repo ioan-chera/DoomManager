@@ -23,4 +23,14 @@ extension URL {
         }
         return modified
     }
+
+    ///
+    /// Does some changes to file name:
+    /// - replaces \ with ^ (because they're used in some states and Windows doesn't allow \)
+    /// - replaces / and : with -
+    ///
+    func sanitizedLump() -> URL {
+        let path = lastPathComponent.sanitizedLumpFile()
+        return deletingLastPathComponent().appendingPathComponent(path)
+    }
 }
