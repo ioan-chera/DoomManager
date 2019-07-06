@@ -22,6 +22,7 @@ class Document: NSDocument, WadOperationsDelegate {
     @IBOutlet var lastActionStatus: NSTextField!
     @IBOutlet var mainWindow: NSWindow! // need this because "window" is ambiguous
     @IBOutlet var lumpFilterBox: NSSearchField!
+    @IBOutlet var showInFinderLink: ClickableLabel!
 
     override init() {
         operations = WadOperations(wad: wad)
@@ -74,10 +75,20 @@ class Document: NSDocument, WadOperationsDelegate {
     ///
     /// Report status
     ///
-    private func reportStatus(text: String) {
+    private func reportStatus(text: String, finderLinkURL: URL? = nil) {
         lastActionStatus.isHidden = false
-        lastActionStatus.stringValue = text
+        lastActionStatus.stringValue = /*finderLinkURL == nil ? text : */text + "."
         lastActionStatus.sizeToFit()
+
+        if let finderLinkURL = finderLinkURL {
+            showInFinderLink.isHidden = false
+            showInFinderLink.frame.origin.x = lastActionStatus.frame.maxX
+            showInFinderLink.info = finderLinkURL
+            showInFinderLink.toolTip = finderLinkURL.path
+            showInFinderLink.sizeToFit()
+        } else {
+            showInFinderLink.isHidden = true
+        }
     }
 
     ///
@@ -299,7 +310,7 @@ class Document: NSDocument, WadOperationsDelegate {
                         return
                     }
 
-                    self.reportStatus(text: "Exported 1 lump")
+                    self.reportStatus(text: "Exported 1 lump", finderLinkURL: url.deletingLastPathComponent())
                 }
             }
         } else {
@@ -360,9 +371,10 @@ class Document: NSDocument, WadOperationsDelegate {
 
                             let lumpDisplay = countedWord(singular: "lump", plural: "lumps", count: lumps.count - failures.count)
                             let failedDisplay = countedWord(singular: "lump", plural: "lumps", count: failures.count)
-                            self.reportStatus(text: "Exported \(lumpDisplay), failed \(failedDisplay). \(failureMessage!)")
+                            self.reportStatus(text: "Exported \(lumpDisplay), failed \(failedDisplay)", finderLinkURL: url)
                         } else {
-                            self.reportStatus(text: "Exported \(countedWord(singular: "lump", plural: "lumps", count: lumps.count))")
+                            self.reportStatus(text: "Exported \(countedWord(singular: "lump", plural: "lumps", count: lumps.count))",
+                                              finderLinkURL: url)
                         }
 
 
@@ -386,6 +398,13 @@ class Document: NSDocument, WadOperationsDelegate {
                 }
             }
         }
+    }
+
+    @IBAction func showInFinderClicked(_ sender: Any?) {
+        guard let url = (sender as? ClickableLabel)?.info as? URL else {
+            return
+        }
+        NSWorkspace.shared.open(url)
     }
 
     ///

@@ -13,6 +13,7 @@
                 <outlet property="lumpList" destination="X4p-Ap-n52" id="4yO-yx-c7G"/>
                 <outlet property="lumpListDelegate" destination="LVj-mg-vWD" id="S6L-fC-r9R"/>
                 <outlet property="mainWindow" destination="xOd-HO-29H" id="dnv-r9-NEK"/>
+                <outlet property="showInFinderLink" destination="1Ed-j5-kXQ" id="0V7-I7-JuU"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -199,6 +200,18 @@
                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                    </textField>
+                    <textField identifier="ShowInFinderLabel" hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="1Ed-j5-kXQ" customClass="ClickableLabel" customModule="DoomManager" customModuleProvider="target">
+                        <rect key="frame" x="281" y="3" width="90" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="left" title="Show in Finder." id="oaG-VD-WMb">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="showInFinderClicked:" target="-2" id="S7v-tn-w1H"/>
+                        </connections>
                     </textField>
                 </subviews>
             </view>

@@ -32,6 +32,7 @@
 		4FCA8B0922CD3A2900D72A95 /* LumpFilePromiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */; };
 		4FCA8B0C22CDD63100D72A95 /* PasteboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */; };
 		4FCA8B0E22CE999400D72A95 /* URLUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0D22CE999400D72A95 /* URLUtil.swift */; };
+		4FCA8B1322D0F21F00D72A95 /* ClickableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B1222D0F21F00D72A95 /* ClickableLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumpFilePromiser.swift; sourceTree = "<group>"; };
 		4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardUtil.swift; sourceTree = "<group>"; };
 		4FCA8B0D22CE999400D72A95 /* URLUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLUtil.swift; sourceTree = "<group>"; };
+		4FCA8B1222D0F21F00D72A95 /* ClickableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickableLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				4F1079AD22CBDF6F00725AB4 /* res */,
 				4F1079A022C7B78E00725AB4 /* App */,
+				4FCA8B1122D0F1FA00D72A95 /* Controls */,
 				4F769D9622C76D0300E7E702 /* Document */,
 				4FCA8B0A22CDD5E900D72A95 /* Utilities */,
 				4F769D8C22C76CCC00E7E702 /* Wad */,
@@ -219,6 +222,14 @@
 				4FCA8B0D22CE999400D72A95 /* URLUtil.swift */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		4FCA8B1122D0F1FA00D72A95 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA8B1222D0F21F00D72A95 /* ClickableLabel.swift */,
+			);
+			name = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +305,7 @@
 								enabled = 0;
 							};
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -366,6 +377,7 @@
 				4FCA8B0C22CDD63100D72A95 /* PasteboardUtil.swift in Sources */,
 				4F94E72E22BF888A008DB033 /* DoomGraphics.swift in Sources */,
 				4F1079A822C8D05E00725AB4 /* StringUtil.swift in Sources */,
+				4FCA8B1322D0F21F00D72A95 /* ClickableLabel.swift in Sources */,
 				4F769DA322C76D4500E7E702 /* LumpAnalysis.swift in Sources */,
 				4F1079AC22CAAA0700725AB4 /* CommonPaths.swift in Sources */,
 				4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */,
@@ -553,7 +565,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DoomManager/DoomManager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 66L236F264;
@@ -572,7 +583,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DoomManager/DoomManager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 66L236F264;
