@@ -127,8 +127,8 @@ class Document: NSDocument, WadOperationsDelegate {
     func wadOperationsHighlight(index: Int) {
         if multiHighlightIndices != nil {
             multiHighlightIndices?.insert(index)
-        } else {    // otherwise it's just a unit
-            lumpList.selectRowIndexes(IndexSet(integer: lumpListDelegate.filtered(index: index)), byExtendingSelection: true)
+        } else if let filteredIndex = lumpListDelegate.filtered(index: index) {    // otherwise it's just a unit
+            lumpList.selectRowIndexes(IndexSet(integer: filteredIndex), byExtendingSelection: true)
             wadOperationsBringAttention(index: index)
         }
     }
@@ -205,7 +205,9 @@ class Document: NSDocument, WadOperationsDelegate {
     /// Animates to a row (used when selecting isn't appropriate
     ///
     func wadOperationsBringAttention(index: Int) {
-        lumpList.animateToRow(index: lumpListDelegate.filtered(index: index))
+        if let filteredIndex = lumpListDelegate.filtered(index: index) {
+            lumpList.animateToRow(index: filteredIndex)
+        }
     }
 
     // MARK: Menu actions
@@ -215,26 +217,28 @@ class Document: NSDocument, WadOperationsDelegate {
     ///
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 
-        // Actions run on selected table items
-        let selectionActions = Set<Selector>([
-            #selector(Document.copy(_:)),
-            #selector(Document.cut(_:)),
-            #selector(Document.delete(_:)),
-            #selector(Document.exportLumpClicked(_:)),
-            #selector(Document.moveLumpDownClicked(_:)),
-            #selector(Document.moveLumpUpClicked(_:))
-        ])
+        guard let action = menuItem.action else {
+            return super.validateMenuItem(menuItem)
+        }
 
-        if menuItem.action == #selector(Document.paste(_:)) {
+        switch action {
+        case #selector(Document.paste(_:)):
             let pasteboard = NSPasteboard.general
             return pasteboard.canReadObject(forClasses: [Lump.self], options: nil)
-        }
 
-        if menuItem.action != nil && selectionActions.contains(menuItem.action!) {
+        case #selector(Document.copy(_:)),
+             #selector(Document.cut(_:)),
+             #selector(Document.delete(_:)),
+             #selector(Document.exportLumpClicked(_:)),
+             #selector(Document.moveLumpDownClicked(_:)),
+             #selector(Document.moveLumpUpClicked(_:)),
+             #selector(Document.performFindPanelAction(_:)) where menuItem.tag == Int(NSFindPanelAction.setFindString.rawValue):
             return !lumpList.selectedRowIndexes.isEmpty
+        case #selector(Document.performFindPanelAction(_:)):
+            return [NSFindPanelAction.showFindPanel, NSFindPanelAction(rawValue: 12)].contains(NSFindPanelAction(rawValue: UInt(menuItem.tag)))
+        default:
+            return super.validateMenuItem(menuItem)
         }
-
-        return super.validateMenuItem(menuItem)
     }
 
     ///
@@ -469,6 +473,31 @@ class Document: NSDocument, WadOperationsDelegate {
     @IBAction func cut(_ sender: Any?) {
         copy(sender)
         delete(sender)
+    }
+
+    ///
+    /// Focus on the find box
+    ///
+    @IBAction func performFindPanelAction(_ sender: Any?) {
+        guard let item = sender as? NSMenuItem,
+            let action = NSFindPanelAction(rawValue: UInt(item.tag)) else
+        {
+            return
+        }
+        switch action {
+        case .showFindPanel, NSFindPanelAction(rawValue: 12):   // also support find-and-replace, even if it's just find
+            lumpFilterBox.becomeFirstResponder()
+        case .setFindString:
+            lumpFilterBox.stringValue = wad.lumps[lumpListDelegate.defiltered(index: lumpList.selectedRow)].name
+            let board = NSPasteboard(name: .find)
+            board.clearContents()
+            let string = lumpFilterBox.stringValue
+            board.writeObjects([string as NSString])
+            lumpFilterBox.becomeFirstResponder()
+            searchBoxUpdated(lumpFilterBox)
+        default:
+            return
+        }
     }
 
     // MARK: User interface actions

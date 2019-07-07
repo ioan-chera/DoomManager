@@ -64,10 +64,10 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
     /// Converts wadwide indices to filtered (displayed) ones
     ///
     func filtered(indices: IndexSet) -> IndexSet {
-        return IndexSet(indices.map { filteredIndexMap[$0]! })
+        return IndexSet(indices.compactMap { filteredIndexMap[$0] })
     }
-    func filtered(index: Int) -> Int {
-        return filteredIndexMap[index]!
+    func filtered(index: Int) -> Int? {
+        return filteredIndexMap[index]
     }
 
     ///
@@ -128,5 +128,9 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
         if let field = sender as? NSTextField {
             wadOperations?.renameLump(index: field.tag, as: field.stringValue)
         }
+    }
+
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        return filteredLumps[row].element
     }
 }
