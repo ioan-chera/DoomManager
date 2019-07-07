@@ -190,8 +190,8 @@ class Document: NSDocument, WadOperationsDelegate {
                 lumpList.selectRowIndexes(lumpListDelegate.filtered(indices: indices), byExtendingSelection: false)
                 multiHighlightIndices = nil
 
-                if !indices.isEmpty {
-                    wadOperationsBringAttention(index: indices.max()!)
+                if let max = indices.max() {
+                    wadOperationsBringAttention(index: max)
                 }
 
                 consumeReport()
@@ -377,7 +377,7 @@ class Document: NSDocument, WadOperationsDelegate {
                             let alert = NSAlert()
                             alert.alertStyle = .warning
                             alert.messageText = "Failed exporting the following " + countedWord(singular: "lump", plural: "lumps", count: failures.count) + " to '\(url.path)'"
-                            alert.informativeText = stringEnumeration(array: failures, maxCount: 20, completionPunctuation: ".") + "\n\n" + failureMessage!
+                            alert.informativeText = stringEnumeration(array: failures, maxCount: 20, completionPunctuation: ".") + (failureMessage != nil ? "\n\n" + failureMessage! : "")
                             alert.beginSheetModal(for: self.mainWindow, completionHandler: nil)
 
                             let lumpDisplay = countedWord(singular: "lump", plural: "lumps", count: lumps.count - failures.count)

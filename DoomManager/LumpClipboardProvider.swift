@@ -26,7 +26,9 @@ class LumpClipboardProvider: NSObject, NSPasteboardItemDataProvider {
     func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: NSPasteboard.PasteboardType) {
         // Retrieve the URL from the item
 
-        let lumpItem = item as! Item
+        guard let lumpItem = item as? Item else {
+            return
+        }
 
         if type != .fileURL {
             let clipData = lumpItem.lump.pasteboardPropertyList(forType: type)

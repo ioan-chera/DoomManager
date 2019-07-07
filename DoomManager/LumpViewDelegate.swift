@@ -111,7 +111,9 @@ class LumpViewDelegate : NSObject, NSTableViewDataSource, NSTableViewDelegate {
     /// Update selection status
     ///
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let tableView = notification.object as! NSTableView
+        guard let tableView = notification.object as? NSTableView else {
+            return
+        }
         let number = tableView.numberOfSelectedRows
         if number == 0 {
             selectedCountStatus.isHidden = true
