@@ -33,6 +33,7 @@
 		4FCA8B0C22CDD63100D72A95 /* PasteboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */; };
 		4FCA8B0E22CE999400D72A95 /* URLUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B0D22CE999400D72A95 /* URLUtil.swift */; };
 		4FCA8B1322D0F21F00D72A95 /* ClickableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA8B1222D0F21F00D72A95 /* ClickableLabel.swift */; };
+		4FF49F8D22D1E75F00EBF707 /* LumpClipboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF49F8C22D1E75F00EBF707 /* LumpClipboardProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		4FCA8B0B22CDD63100D72A95 /* PasteboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardUtil.swift; sourceTree = "<group>"; };
 		4FCA8B0D22CE999400D72A95 /* URLUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLUtil.swift; sourceTree = "<group>"; };
 		4FCA8B1222D0F21F00D72A95 /* ClickableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickableLabel.swift; sourceTree = "<group>"; };
+		4FF49F8C22D1E75F00EBF707 /* LumpClipboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumpClipboardProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			children = (
 				4F769D9E22C76D4500E7E702 /* Lump.swift */,
 				4F769D9F22C76D4500E7E702 /* LumpAnalysis.swift */,
+				4FF49F8C22D1E75F00EBF707 /* LumpClipboardProvider.swift */,
 				4FCA8B0822CD3A2900D72A95 /* LumpFilePromiser.swift */,
 				4F769DA122C76D4500E7E702 /* Wad.swift */,
 				4F769DA022C76D4500E7E702 /* WadOperations.swift */,
@@ -379,6 +382,7 @@
 				4F1079A822C8D05E00725AB4 /* StringUtil.swift in Sources */,
 				4FCA8B1322D0F21F00D72A95 /* ClickableLabel.swift in Sources */,
 				4F769DA322C76D4500E7E702 /* LumpAnalysis.swift in Sources */,
+				4FF49F8D22D1E75F00EBF707 /* LumpClipboardProvider.swift in Sources */,
 				4F1079AC22CAAA0700725AB4 /* CommonPaths.swift in Sources */,
 				4F94E72C22BF7E21008DB033 /* DataReader.swift in Sources */,
 				4F769DA222C76D4500E7E702 /* Lump.swift in Sources */,

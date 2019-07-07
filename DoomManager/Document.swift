@@ -24,6 +24,8 @@ class Document: NSDocument, WadOperationsDelegate {
     @IBOutlet var lumpFilterBox: NSSearchField!
     @IBOutlet var showInFinderLink: ClickableLabel!
 
+    // MARK: Base document methods
+
     override init() {
         operations = WadOperations(wad: wad)
         super.init()
@@ -46,6 +48,8 @@ class Document: NSDocument, WadOperationsDelegate {
         if let cell = lumpFilterBox.cell as? NSSearchFieldCell {
             cell.searchButtonCell?.image = NSImage(named: "line.horizontal.3.decrease.circle")
         }
+
+        showInFinderLink.sizeToFit()
     }
 
     override var windowNibName: NSNib.Name? {
@@ -72,6 +76,8 @@ class Document: NSDocument, WadOperationsDelegate {
         }
     }
 
+    // MARK: WadOperationsDelegate
+
     ///
     /// Report status
     ///
@@ -85,7 +91,6 @@ class Document: NSDocument, WadOperationsDelegate {
             showInFinderLink.frame.origin.x = lastActionStatus.frame.maxX
             showInFinderLink.info = finderLinkURL
             showInFinderLink.toolTip = finderLinkURL.path
-            showInFinderLink.sizeToFit()
         } else {
             showInFinderLink.isHidden = true
         }
@@ -202,6 +207,8 @@ class Document: NSDocument, WadOperationsDelegate {
     func wadOperationsBringAttention(index: Int) {
         lumpList.animateToRow(index: lumpListDelegate.filtered(index: index))
     }
+
+    // MARK: Menu actions
 
     ///
     /// Validate menus
@@ -427,10 +434,10 @@ class Document: NSDocument, WadOperationsDelegate {
             } else {
                 repeats[url] = 1
             }
-            let item = LumpURLProvider.Item()
+            let item = LumpClipboardProvider.Item()
             item.lump = lump
             item.url = url
-            let provider = LumpURLProvider()
+            let provider = LumpClipboardProvider()
             item.setDataProvider(provider, forTypes: lump.writableTypes(for: pasteboard) + [.fileURL])
             pasteboard.writeObjects([item])
         }
@@ -464,51 +471,7 @@ class Document: NSDocument, WadOperationsDelegate {
         delete(sender)
     }
 
-    ///
-    /// Necessary to provide URLs
-    ///
-    class LumpURLProvider: NSObject, NSPasteboardItemDataProvider {
-        ///
-        /// The pasteboard item. Holds reference to lump
-        ///
-        class Item: NSPasteboardItem {
-            var url: URL!
-            var lump: Lump!
-        }
-        ///
-        /// The actual providing function
-        ///
-        func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: NSPasteboard.PasteboardType) {
-            // Retrieve the URL from the item
-
-            let lumpItem = item as! Item
-
-            if type != .fileURL {
-                let clipData = lumpItem.lump.pasteboardPropertyList(forType: type)
-                item.set(content: clipData, forType: type)
-                return
-            }
-
-            item.setData(lumpItem.url.dataRepresentation, forType: .fileURL)
-
-            guard (try? lumpItem.lump.write(url: lumpItem.url)) != nil else {
-                Swift.print("Failed outputting to \(String(describing: lumpItem.url))")
-                return
-            }
-        }
-
-        ///
-        /// When ready to delete, delete all junk from path, to cleanup
-        ///
-        func pasteboardFinishedWithDataProvider(_ pasteboard: NSPasteboard) {
-            guard let junk = try? FileManager.default.contentsOfDirectory(atPath: tempClipboardPathURL.path).map({ tempClipboardPathURL.appendingPathComponent($0) }) else {
-                return
-            }
-            for url in junk {
-                try? FileManager.default.removeItem(at: url)
-            }
-        }
-    }
+    // MARK: User interface actions
 
     ///
     /// User is searching
@@ -517,7 +480,7 @@ class Document: NSDocument, WadOperationsDelegate {
     @IBAction func searchBoxUpdated(_ sender: Any?) {
         let currentString = lumpFilterBox.stringValue
         let realRow: Int?
-        // TODO: preserve highlighting ALSO when visiting superior one
+
         if previousSearchString.localizedCaseInsensitiveContains(currentString) || currentString.isEmpty {
             // We have a search situation
             let row = lumpList.selectedRow
